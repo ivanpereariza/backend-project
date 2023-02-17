@@ -54,3 +54,10 @@ Events routes:
 |/events/:id/edit       |GET        |Edit event page        |
 |/events/:id/edit       |POST       |Edit event             |
 |/events/:id/delete     |POST       |Delete event           |
+
+API routes:
+
+|     Route   | HTTP Verb |    Description    | JSON |
+|-------------|-----------|-------------------|------|
+|/api/events  |GET        |API with all events|  [x] |
+

@@ -60,4 +60,5 @@ API routes:
 |     Route   | HTTP Verb |    Description    | JSON |
 |-------------|-----------|-------------------|------|
 |/api/events  |GET        |API with all events|  [x] |
+|/api/users   |GET        |API with all users |  [x] |
 

@@ -1,12 +1,12 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00b7ff;
-}
+.errorMessage {
 
-h1 {
-  color: 15px;
+  background-color: rgb(232, 158, 158);
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 3px;
 }

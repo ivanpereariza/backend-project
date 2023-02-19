@@ -1,9 +1,9 @@
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
-const mongoose = require('mongoose');
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const mongoose = require('mongoose')
 
 module.exports = app => {
-    app.set('trust proxy', 1);
+    app.set('trust proxy', 1)
     app.use(
         session({
             secret: process.env.SESS_SECRET,
@@ -19,5 +19,9 @@ module.exports = app => {
                 mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/basic-auth'
             })
         })
-    );
-};
+    )
+    app.use((req, res, next) => {
+        res.locals.currentUser = req.session.currentUser
+        next()
+    })
+}

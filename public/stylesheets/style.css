@@ -10,3 +10,13 @@ body {
   margin-top: 10px;
   border-radius: 3px;
 }
+
+.avatar {
+  height: 200px;
+  width: auto;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}

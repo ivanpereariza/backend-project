@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const User = require('./../models/User.model')
 const fileUploader = require('../config/cloudinary.config');
 const saltRounds = 10
+const { isLoggedIn, isLoggedOut } = require('./../middlewares/route-guards')
 
 router.get("/signup", (req, res, next) => {
     res.render("auth/signup")
@@ -43,7 +44,7 @@ router.post('/signup', fileUploader.single('avatarUrl'), (req, res, next) => {
 })
 
 
-router.get('/login', (req, res, next) => {
+router.get('/login', isLoggedOut, (req, res, next) => {
     res.render('auth/login')
 })
 
@@ -74,7 +75,7 @@ router.post('/login', (req, res, next) => {
 
 })
 
-router.get('/logout', (req, res, next) => {
+router.get('/logout', isLoggedIn, (req, res, next) => {
     req.session.destroy(() => res.redirect('/'))
 })
 

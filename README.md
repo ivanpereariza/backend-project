@@ -21,6 +21,7 @@ Profile routes:
 |`/profile/:id/edit`    |GET        |Edit profile page     |
 |`/profile/:id/edit`    |POST       |Edit profile          |
 |`/profile/:id/delete`  |POST       |Delete profile        |
+|`/profile/:id/:role `  |POST       |Change role           |
 
 Character routes:
 

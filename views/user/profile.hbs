@@ -1,0 +1,59 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-6">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{user.avatarUrl}}" class="img-fluid rounded-start avatar" alt="{{user.username}}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{user.username}}</h5>
+                        <p class="card-title">{{user.dimension}}</p>
+                        <p class="card-text">{{user.description}}</p>
+                        <P>{{user.role}}</P>
+                        {{#if isADMIN}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form action="/profile/{{user.id}}/USER" method="POST">
+                                    <input type="submit" value="Change role to User" class="btn btn-dark btn-sm">
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <form action="/profile/{{user.id}}/EDITOR" method="POST">
+                                    <input type="submit" value="Change role to Editor" class="btn btn-dark btn-sm">
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <form action="/profile/{{user.id}}/ADMIN" method="POST">
+                                    <input type="submit" value="Change role to Admin" class="btn btn-dark btn-sm">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <a href="/profile/{{user._id}}/edit" class="btn btn-warning btn-sm">Edit profile</a>
+                            </div>
+                            <div class="col-md-3">
+                                <form action="/profile/{{user.id}}/delete" method="POST">
+                                    <input type="submit" value="Delete User" class="btn btn-danger btn-sm">
+                                </form>
+                            </div>
+                        </div>
+                        {{/if}}
+                        {{#if isUserNoADMIN}}
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <a href="/profile/{{user._id}}/edit" class="btn btn-warning btn-sm">Edit profile</a>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h1>Favorites characters</h1>
+{{#each favoriteCharacters}}
+
+{{/each}}

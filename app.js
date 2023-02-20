@@ -25,6 +25,9 @@ app.use("/", authRoutes)
 const profileRoutes = require("./routes/profile.routes")
 app.use("/profile", profileRoutes)
 
+const charactersRoutes = require("./routes/characters.routes")
+app.use("/characters", charactersRoutes)
+
 
 require("./error-handling")(app)
 

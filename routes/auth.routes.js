@@ -30,7 +30,7 @@ router.post('/signup', fileUploader.single('avatarUrl'), (req, res, next) => {
             if (emailResult) {
                 res.render('auth/signup', { errorMessage: 'The email have an account already in use' })
             } else if (usernameResult) {
-                res.render('auth/signup', { errorMessage: 'The username is already in use, please chose anotherone' })
+                res.render('auth/signup', { errorMessage: 'The username is already in use, please chose another one' })
             }
         })
         .catch(err => next(err))

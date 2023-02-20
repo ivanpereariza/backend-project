@@ -26,6 +26,17 @@
                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/community">Community</a>
                </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     Wiki
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="/characters">Characters</a></li>
+                     <li><a class="dropdown-item" href="/locations">Locations</a></li>
+                     <li><a class="dropdown-item" href="/episodies">Episodies</a></li>
+                  </ul>
+               </li>
                {{#if currentUser}}
                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/profile/{{currentUser._id}}">Profile</a>

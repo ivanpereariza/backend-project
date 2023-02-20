@@ -3,7 +3,8 @@ const router = express.Router()
 
 const User = require('../models/User.model')
 const Event = require('../models/Event.model')
-const { isLoggedIn } = require('./../middlewares/route-guards')
+const fileUploader = require('../config/cloudinary.config');
+const { isLoggedIn, checkRole } = require('./../middlewares/route-guards')
 
 
 router.get('/', isLoggedIn, (req, res, next) => {
@@ -19,9 +20,10 @@ router.get('/create', isLoggedIn, (req, res, next) => {
     res.render('events/new-event')
 })
 
-router.post('/create', isLoggedIn, (req, res, next) => {
+router.post('/create', isLoggedIn, fileUploader.single('image'), (req, res, next) => {
 
     const { title, description, dimension, date, longitude, latitude, id: organizer } = req.body
+    req.file ? image = req.file.path : image = undefined
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]
@@ -32,8 +34,8 @@ router.post('/create', isLoggedIn, (req, res, next) => {
     }
 
     Event
-        .create({ title, description, dimension, date, location, organizer })
-        .then(() => res.redirect('/'))
+        .create({ title, description, dimension, date, image, location, organizer })
+        .then(() => res.redirect('/events'))
         .catch(err => next(err))
 
 })
@@ -44,13 +46,18 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
     Event
         .findById(id)
         .populate('organizer')
-        .then(events => res.render('events/event-details', events))
+        .then(events => {
+            console.log(events.organizer)
+            const isEditOrOwnerOrAdmin = req.session.currentUser?.role === 'EDIT' || req.session.currentUser._id === events.organizer.id || req.session.currentUser?.role === 'ADMIN'
+            res.render('events/event-details', { events, isEditOrOwnerOrAdmin })
+        })
         .catch(err => next(err))
 })
 
-router.get('/:id/edit', isLoggedIn, (req, res, next) => {
+router.get('/:id/edit', isLoggedIn, checkRole('EDIT', 'ADMIN'), (req, res, next) => {
 
     const { id } = req.params
+
 
     Event
         .findById(id)
@@ -58,7 +65,31 @@ router.get('/:id/edit', isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.post('/:id/edit', isLoggedIn, checkRole('EDIT', 'ADMIN'), fileUploader.single('image'), (req, res, next) => {
+    const { title, description, dimension, date, longitude, latitude, id } = req.body
+    const location = {
+        type: 'Point',
+        coordinates: [latitude, longitude]
+    }
+    req.file ? image = req.file.path : image = undefined
+    Event
+        .findByIdAndUpdate(id, { title, description, dimension, date, image, location })
+        .then(() => res.redirect('/events'))
+        .catch(err => next(err))
 
+})
+
+router.post('/:id/delete', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+
+    const { id } = req.params
+
+    Event
+        .findByIdAndDelete(id)
+        .then(() => res.redirect('/events'))
+        .catch(err => next(err))
+})
+
+// router.post('/:id/add-events')
 
 
 

@@ -28,6 +28,9 @@ app.use("/profile", profileRoutes)
 const charactersRoutes = require("./routes/characters.routes")
 app.use("/characters", charactersRoutes)
 
+const eventsRoutes = require("./routes/events.routes")
+app.use("/events", eventsRoutes)
+
 
 require("./error-handling")(app)
 

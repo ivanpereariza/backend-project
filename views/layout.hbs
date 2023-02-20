@@ -41,7 +41,16 @@
                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/profile/{{currentUser._id}}">Profile</a>
                </li>
-               {{/if}}
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     Events
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="/events">All events</a></li>
+                     <li><a class="dropdown-item" href="/events/create">Create an event</a></li>
+                  </ul>
+                  {{/if}}
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                      aria-expanded="false">

@@ -1,0 +1,45 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-6">
+        <div class="card mb-3">
+            <div class="row g-0 ">
+                {{!-- <div class="col-md-4">
+                    <img src="" class="img-fluid rounded-start avatar" alt="">
+                </div> --}}
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Title:{{title}}</h5>
+                        <p class="card-title">Dimension:{{dimension}}</p>
+                        <p class="card-text">Organizer:{{organizer.username}}</p>
+                        <p class="card-text">Date:{{date}}</p>
+                        <p class="card-text">Description:{{description}}</p>
+                        <p class="card-text">Location: Longitude: {{location.coordinates.[0]}} Latitude:
+                            {{location.coordinates.[1]}}</p>
+                        {{!-- {{#each participants}}
+                        <p> Participants:{{username}}</p>
+                        {{/each}} --}}
+
+                        <div class="row mt-4">
+                            <div class="col-md-3">
+                                <a href="/events/{{id}}/edit" class="btn btn-warning btn-sm">Edit event</a>
+                            </div>
+                            <div class="col-md-4">
+                                <form action="#" method="POST">
+                                    <input type="submit" value="Delete event" class="btn btn-danger btn-sm">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-3">
+                                <a href="#" class="btn btn-dark btn-sm">Participate</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

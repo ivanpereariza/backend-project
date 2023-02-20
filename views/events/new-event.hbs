@@ -1,0 +1,70 @@
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>NEW EVENT</h1>
+            <hr>
+            <form action="/events/create" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title: </label>
+                            <input type="text" class="form-control" id="title" name="title">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Date: </label>
+                            <input type="date" class="form-control" id="date" name="date">
+                        </div>
+                    </div>
+                    {{!-- <div class="col">
+                        <div class="mb-3">
+                            <label for="organizer" class="form-label">Organizer: </label>
+                            <input type="text" class="form-control" id="organizer" name="organizer">
+                        </div>
+                    </div> --}}
+                    <div class="mb-3">
+                        <label for="dimension" class="form-label">Dimension</label>
+                        <select class="form-select" name="dimension" id="dimension">
+                            <option value="Dimension C-137" selected>Dimension C-137</option>
+                            <option value="Post-Apocalyptic Dimension">Post-Apocalyptic Dimension</option>
+                            <option value="Replacement Dimension">Replacement Dimension</option>
+                            <option value="Cronenberg Dimension">Cronenberg Dimension</option>
+                            <option value="Testicle Monster Dimension">Testicle Monster Dimension</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+                            <div class="form-text">Required. Min 10 characters.</div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="{{currentUser._id}}">
+                    <div class="mb-3">
+                        <label for="longitude" class="form-label">Longitude:</label>
+                        <input type="text" class="form-control" id="longitude" name="longitude">
+                    </div>
+                    <div class="mb-3">
+                        <label for="latitude" class="form-label">Latitude:</label>
+                        <input type="text" class="form-control" id="latitude" name="latitude">
+                    </div>
+
+                </div>
+
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-dark btn-lg">SAVE</button>
+                </div>
+                {{#if errorMessage}}
+                <div>
+                    <p class="errorMessage">{{errorMessage}}</p>
+                </div>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+
+
+</div>

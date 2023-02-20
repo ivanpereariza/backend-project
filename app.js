@@ -37,6 +37,8 @@ app.use("/episodies", episodiesRoutes)
 const eventsRoutes = require("./routes/events.routes")
 app.use("/events", eventsRoutes)
 
+const apiRoutes = require("./routes/api.routes")
+app.use("/api", apiRoutes)
 
 require("./error-handling")(app)
 

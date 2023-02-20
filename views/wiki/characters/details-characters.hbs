@@ -1,27 +1,36 @@
-<div class="row justify-content-center mt-3">
-    <div class="col-6">
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="{{character.image}}" class="img-fluid rounded-start avatar" alt="{{character.name}}">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Name: {{character.name}}</h5>
-                        <p class="card-title">Status: {{character.status}}</p>
-                        <p class="card-text">Species: {{character.species}}</p>
-                        <p class="card-text">Gender: {{character.gender}}</p>
-                        <p class="card-text">Origin: {{character.origin.name}}</p>
-                        <p class="card-text">Location: {{character.location.name}}</p>
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-6">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{character.image}}" class="img-fluid rounded-start avatar" alt="{{character.name}}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Name: {{character.name}}</h5>
+                            <p class="card-title">Status: {{character.status}}</p>
+                            <p class="card-text">Species: {{character.species}}</p>
+                            <p class="card-text">Gender: {{character.gender}}</p>
+                            <p class="card-text">Origin: {{character.origin.name}}<a
+                                    href="/locations/details/{{character.origin.url}}" class="btn btn-dark">Go to the
+                                    origin</a></p>
+                            <p class="card-text">Location: {{character.location.name}} <a
+                                    href="/locations/details/{{character.location.url}}" class="btn btn-dark">Go to the
+                                    location</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        {{#each character.episode}}
+        <div class="col-2">
+            <a href="/episodies/details/{{this}}" class="btn btn-dark">See episodie {{this}}</a>
+        </div>
+        {{/each}}
+    </div>
+
+    <a href="/characters/1" class="btn btn-dark">Back to all characters</a>
 </div>
-
-{{!-- {{#each character.episode}}
-<a href="/episodies/details/????" class="btn btn-dark">See episodie</a>
-{{/each}} --}}
-
-<a href="/characters/1" class="btn btn-dark">Back to all characters</a>

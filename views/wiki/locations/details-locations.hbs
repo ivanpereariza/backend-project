@@ -1,19 +1,23 @@
-<div class="row justify-content-center mt-3">
-    <div class="col-6">
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Name: {{location.name}}</h5>
-                        <p class="card-title">Type: {{location.type}}</p>
-                        <p class="card-text">Dimension: {{location.dimension}}</p>
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-6">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Name: {{location.name}}</h5>
+                            <p class="card-title">Type: {{location.type}}</p>
+                            <p class="card-text">Dimension: {{location.dimension}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-{{!-- {{#each location.residents}}
-<a href="/characters/details/????" class="btn btn-dark">See resident</a>
-{{/each}} --}}
+    <a href="/locations/1" class="btn btn-dark">Back to all locations</a>
+
+    {{!-- {{#each location.residents}}
+    <a href="/characters/details/????" class="btn btn-dark">See resident</a>
+    {{/each}} --}}
+</div>

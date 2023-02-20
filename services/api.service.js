@@ -23,6 +23,14 @@ class ApiService {
     getLocationById(id) {
         return this.api.get(`/location/${id}`)
     }
+
+    getAllEpisodies(page) {
+        return this.api.get(`/episode?page=${page}`)
+    }
+
+    getEpisodeById(id) {
+        return this.api.get(`/episode/${id}`)
+    }
 }
 
 module.exports = ApiService

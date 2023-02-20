@@ -7,7 +7,10 @@ const eventSchema = new Schema(
             type: String,
             required: true
         },
-
+        image: {
+            type: String,
+            default: 'https://res.cloudinary.com/dkfzj9tmk/image/upload/v1676916085/backend-project/event-default_otu1xw.jpg'
+        },
         description: {
             type: String,
             required: true,

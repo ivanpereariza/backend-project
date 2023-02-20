@@ -5,7 +5,7 @@
 
             <h1>NEW EVENT</h1>
             <hr>
-            <form action="/events/create" method="POST">
+            <form action="/events/create" method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
                         <div class="mb-3">
@@ -13,18 +13,17 @@
                             <input type="text" class="form-control" id="title" name="title">
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image:</label>
+                        <input class="form-control" type="file" id="image" name="image">
+                    </div>
                     <div class="col">
                         <div class="mb-3">
                             <label for="date" class="form-label">Date: </label>
                             <input type="date" class="form-control" id="date" name="date">
                         </div>
                     </div>
-                    {{!-- <div class="col">
-                        <div class="mb-3">
-                            <label for="organizer" class="form-label">Organizer: </label>
-                            <input type="text" class="form-control" id="organizer" name="organizer">
-                        </div>
-                    </div> --}}
+
                     <div class="mb-3">
                         <label for="dimension" class="form-label">Dimension</label>
                         <select class="form-select" name="dimension" id="dimension">

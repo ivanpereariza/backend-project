@@ -27,24 +27,24 @@ Character routes:
 
 |               Route           | HTTP Verb |     Description       |
 |-------------------------------|-----------|-----------------------|
-|`/characters`                  |GET        |List all characters    |
-|`/characters/:id`              |GET        |Details character by ID|
+|`/characters/:page`            |GET        |List all characters    |
+|`/characters/details/:id`      |GET        |Details character by ID|
 |`/characters/:id/add-favorites`|POST       |Add character to fav   |
 
 Locations routes:
 
 |             Route            | HTTP Verb |     Description       |
 |------------------------------|-----------|-----------------------|
-|`/locations`                  |GET        |List all locations     |
-|`/locations/:id`              |GET        |Details location by ID |
+|`/locations/:page`            |GET        |List all locations     |
+|`/locations/details/:id`      |GET        |Details location by ID |
 |`/locations/:id/add-favorites`|POST       |Add location to fav    |
 
 Episodies routes:
 
 |             Route            | HTTP Verb |     Description       |
 |------------------------------|-----------|-----------------------|
-|`/episodies`                  |GET        |List all episodies     |
-|`/episodies/:id`              |GET        |Details episodie by ID |
+|`/episodies/:page`            |GET        |List all episodies     |
+|`/episodies/details/:id`      |GET        |Details episodie by ID |
 |`/episodies/:id/add-favorites`|POST       |Add episodie to fav    |
 
 Events routes:

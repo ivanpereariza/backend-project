@@ -28,6 +28,12 @@ app.use("/profile", profileRoutes)
 const charactersRoutes = require("./routes/characters.routes")
 app.use("/characters", charactersRoutes)
 
+const locationsRoutes = require("./routes/locations.routes")
+app.use("/locations", locationsRoutes)
+
+const episodiesRoutes = require("./routes/episodies.routes")
+app.use("/episodies", episodiesRoutes)
+
 const eventsRoutes = require("./routes/events.routes")
 app.use("/events", eventsRoutes)
 

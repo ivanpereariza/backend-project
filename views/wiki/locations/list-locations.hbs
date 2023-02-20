@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row justify-content-center">
+        {{#each locations}}
+        <div class="col-xl-3 col-lg-4 col-md-5 my-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{name}}</h5>
+                    <p class="card-text text-center">Type: {{type}}</p>
+                    <p class="card-text text-center">Dimension: {{dimension}}</p>
+                    <div class="row px-5">
+                        <a href="/locations/details/{{id}}" class="btn btn-dark">DETAILS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        <div class="row justify-content-center">
+            <div class="col-2">{{#if previousPage}}
+                <a href="/locations/{{previousPage}}" class="btn btn-dark mb-3">Previous page</a>
+                {{/if}}
+            </div>
+            <div class="col-2">
+                {{#if nextPage}}
+                <a href="/locations/{{nextPage}}" class="btn btn-dark mb-3">Next page</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

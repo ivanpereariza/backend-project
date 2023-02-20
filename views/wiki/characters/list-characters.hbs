@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row justify-content-center">
+        {{#each characters}}
+        <div class="col-xl-3 col-lg-4 col-md-5 my-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{{image}}" class="card-img-top img-fluid mx-auto d-block avatar p-3" alt="{{name}}">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{name}}</h5>
+                    <p class="card-text text-center">Status: {{status}}</p>
+                    <p class="card-text text-center">Species: {{species}}</p>
+                    <p class="card-text text-center">Gender: {{gender}}</p>
+                    <div class="row px-5">
+                        <a href="/characters/details/{{id}}" class="btn btn-dark">DETAILS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        <div class="row justify-content-center">
+            <div class="col-2">{{#if previousPage}}
+                <a href="/characters/{{previousPage}}" class="btn btn-dark mb-3">Previous page</a>
+                {{/if}}
+            </div>
+            <div class="col-2">
+                {{#if nextPage}}
+                <a href="/characters/{{nextPage}}" class="btn btn-dark mb-3">Next page</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

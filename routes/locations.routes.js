@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router()
+
 const ApiService = require('./../services/api.service')
 const { nextPage, prevPage } = require('./../utils/pages')
 
-const charactersApi = new ApiService
-
+const locationsApi = new ApiService
 
 router.get('/:page', (req, res, next) => {
     const { page } = req.params
-    charactersApi
-        .getAllCharacters(page)
-        .then(({ data }) => res.render('wiki/characters/list-characters', {
-            characters: data.results,
+    locationsApi
+        .getAllLocations(page)
+        .then(({ data }) => res.render('wiki/locations/list-locations', {
+            locations: data.results,
             nextPage: nextPage(data, page),
             previousPage: prevPage(data, page),
         }))
@@ -20,9 +20,9 @@ router.get('/:page', (req, res, next) => {
 
 router.get('/details/:id', (req, res, next) => {
     const { id } = req.params
-    charactersApi
-        .getCharacterById(id)
-        .then(({ data }) => res.render('wiki/characters/details-characters', { character: data }))
+    locationsApi
+        .getLocationById(id)
+        .then(({ data }) => res.render('wiki/locations/details-locations', { location: data }))
         .catch(err => next(err))
 })
 

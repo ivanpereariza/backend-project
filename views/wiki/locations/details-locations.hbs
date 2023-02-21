@@ -14,10 +14,12 @@
             </div>
         </div>
     </div>
-
+    <div class="row">
+        {{#each location.residents}}
+        <div class="col-2">
+            <a href="/characters/details/{{this}}" class="btn btn-dark">See character {{this}}</a>
+        </div>
+        {{/each}}
+    </div>
     <a href="/locations/1" class="btn btn-dark">Back to all locations</a>
-
-    {{!-- {{#each location.residents}}
-    <a href="/characters/details/????" class="btn btn-dark">See resident</a>
-    {{/each}} --}}
 </div>

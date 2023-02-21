@@ -14,5 +14,12 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        {{#each episode.characters}}
+        <div class="col-2">
+            <a href="/characters/details/{{this}}" class="btn btn-dark">See character {{this}}</a>
+        </div>
+        {{/each}}
+    </div>
     <a href="/episodies/1" class="btn btn-dark">Back to all episodies</a>
 </div>

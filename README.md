@@ -25,40 +25,47 @@ Profile routes:
 
 Character routes:
 
-|               Route           | HTTP Verb |     Description       |
-|-------------------------------|-----------|-----------------------|
-|`/characters/:page`            |GET        |List all characters    |
-|`/characters/details/:id`      |GET        |Details character by ID|
-|`/characters/:id/add-favorites`|POST       |Add character to fav   |
+|                Route           | HTTP Verb |     Description       |
+|--------------------------------|-----------|-----------------------|
+|`/characters/:page`             |GET        |List all characters    |
+|`/characters/details/:id`       |GET        |Details character by ID|
+|`/characters/:id/add-favorites` |POST       |Add character to fav   |
+|`/characters/:id/quit-favorites`|POST       |Quit characters to fav |
+
 
 Locations routes:
 
-|             Route            | HTTP Verb |     Description       |
-|------------------------------|-----------|-----------------------|
-|`/locations/:page`            |GET        |List all locations     |
-|`/locations/details/:id`      |GET        |Details location by ID |
-|`/locations/:id/add-favorites`|POST       |Add location to fav    |
+|              Route            | HTTP Verb |     Description       |
+|-------------------------------|-----------|-----------------------|
+|`/locations/:page`             |GET        |List all locations     |
+|`/locations/details/:id`       |GET        |Details location by ID |
+|`/locations/:id/add-favorites` |POST       |Add location to fav    |
+|`/locations/:id/quit-favorites`|POST       |Quit location to fav   |
+
 
 Episodies routes:
 
-|             Route            | HTTP Verb |     Description       |
-|------------------------------|-----------|-----------------------|
-|`/episodies/:page`            |GET        |List all episodies     |
-|`/episodies/details/:id`      |GET        |Details episodie by ID |
-|`/episodies/:id/add-favorites`|POST       |Add episodie to fav    |
+|              Route            | HTTP Verb |     Description       |
+|-------------------------------|-----------|-----------------------|
+|`/episodies/:page`             |GET        |List all episodies     |
+|`/episodies/details/:id`       |GET        |Details episodie by ID |
+|`/episodies/:id/add-favorites` |POST       |Add episodie to fav    |
+|`/episodies/:id/quit-favorites`|POST       |Quit episodie to fav   |
+
 
 Events routes:
 
-|         Route         | HTTP Verb |     Description       |
-|-----------------------|-----------|-----------------------|
-|`/events`              |GET        |List all events        |
-|`/events/create`       |GET        |Create event page      |
-|`/events/create`       |POST       |Create new event       |
-|`/events/:id`          |GET        |Details events by ID   |
-|`/events/:id/edit`     |GET        |Edit event page        |
-|`/events/:id/edit`     |POST       |Edit event             |
-|`/events/:id/delete`   |POST       |Delete event           |
-|`/events/:id/add-event`|POST       |Participet in event    |
+|          Route          | HTTP Verb |     Description       |
+|-------------------------|-----------|-----------------------|
+|`/events`                |GET        |List all events        |
+|`/events/create`         |GET        |Create event page      |
+|`/events/create`         |POST       |Create new event       |
+|`/events/:id`            |GET        |Details events by ID   |
+|`/events/:id/edit`       |GET        |Edit event page        |
+|`/events/:id/edit`       |POST       |Edit event             |
+|`/events/:id/delete`     |POST       |Delete event           |
+|`/events/:id/add-event`  |POST       |Participet in the event|
+|`/events/:id/leave-event`|POST       |Leave the event        |
 
 API routes:
 

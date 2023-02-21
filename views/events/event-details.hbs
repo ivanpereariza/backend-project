@@ -9,9 +9,21 @@
                 <p class="card-text">Organizer:{{events.organizer.username}}</p>
                 <p class="card-text">Date:{{events.date}}</p>
                 <p class="card-text">Description:{{events.description}}</p>
-                {{!-- {{#each participants}}
-                <p> Participants:{{username}}</p>
-                {{/each}} --}}
+                <p>Participants:</p>
+                <ul>
+                    <div class="row">
+                        {{#each events.participants}}
+                        <div class="col-2">
+                            <li>
+                                <div class="participants">
+                                    <img src="{{avatarUrl}}" alt="">
+                                    <p>{{username}}</p>
+                                </div>
+                            </li>
+                        </div>
+                        {{/each}}
+                    </div>
+                </ul>
                 {{#if isEditOrOwnerOrAdmin}}
                 <div class="row mt-4">
                     <div class="col-md-3">
@@ -26,7 +38,14 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-3">
-                        <a href="#" class="btn btn-dark btn-sm">Participate</a>
+                        <form action="/events/{{events.id}}/add-event" method="POST">
+                            <input type="submit" value="Participate" class="btn btn-dark btn-sm">
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <form action="/events/{{events.id}}/leave-event" method="POST">
+                            <input type="submit" value="Leave the event" class="btn btn-dark btn-sm">
+                        </form>
                     </div>
                 </div>
                 <div id="map" class="mt-3"></div>

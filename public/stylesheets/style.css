@@ -24,3 +24,8 @@ body {
 #map {
   height: 300px;
 }
+
+.participants img {
+  height: 40px;
+  width: auto;
+}

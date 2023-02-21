@@ -46,6 +46,7 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
     Event
         .findById(id)
         .populate('organizer')
+        .populate('participants')
         .then(events => {
             const isEditOrOwnerOrAdmin = req.session.currentUser?.role === 'EDIT' || req.session.currentUser._id === events.organizer.id || req.session.currentUser?.role === 'ADMIN'
             res.render('events/event-details', { events, isEditOrOwnerOrAdmin })
@@ -90,14 +91,20 @@ router.post('/:id/delete', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
 
 router.post('/:id/add-event', isLoggedIn, (req, res, next) => {
     const { id } = req.params
-    // const { participants } = req.body
-    const { user_id } = req.session.currentUser._id
-
+    const user_id = req.session.currentUser._id
     Event
         .findByIdAndUpdate(id, { $addToSet: { participants: user_id } })
         .then(() => res.redirect(`/events/${id}`))
         .catch(err => next(err))
+})
 
+router.post('/:id/leave-event', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+    const user_id = req.session.currentUser._id
+    Event
+        .findByIdAndUpdate(id, { $pull: { participants: user_id } })
+        .then(() => res.redirect(`/events/${id}`))
+        .catch(err => next(err))
 
 
 })

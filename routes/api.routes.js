@@ -7,7 +7,6 @@ const Event = require('./../models/Event.model.js')
 router.get('/users', (req, res, next) => {
     User
         .find()
-        .cast({ username })
         .then(users => res.json(users))
         .catch(err => next(err))
 })

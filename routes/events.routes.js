@@ -24,7 +24,6 @@ router.post('/create', isLoggedIn, fileUploader.single('image'), (req, res, next
 
     const { title, description, dimension, date, longitude, latitude, id: organizer } = req.body
     req.file ? image = req.file.path : image = undefined
-    console.log(date)
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]
@@ -48,7 +47,6 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
         .findById(id)
         .populate('organizer')
         .then(events => {
-            console.log(events.organizer)
             const isEditOrOwnerOrAdmin = req.session.currentUser?.role === 'EDIT' || req.session.currentUser._id === events.organizer.id || req.session.currentUser?.role === 'ADMIN'
             res.render('events/event-details', { events, isEditOrOwnerOrAdmin })
         })
@@ -75,7 +73,7 @@ router.post('/:id/edit', isLoggedIn, checkRole('EDIT', 'ADMIN'), fileUploader.si
     req.file ? image = req.file.path : image = undefined
     Event
         .findByIdAndUpdate(id, { title, description, dimension, date, image, location })
-        .then(() => res.redirect('/events'))
+        .then(() => res.redirect(`/events/${id}`))
         .catch(err => next(err))
 
 })

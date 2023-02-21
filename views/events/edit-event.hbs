@@ -23,7 +23,8 @@
                 <div class="mb-3">
                     <label for="dimension" class="form-label">Dimension</label>
                     <select class="form-select" name="dimension" id="dimension">
-                        <option value="Dimension C-137" selected>Dimension C-137</option>
+                        <option value="{{dimension}}" selected disabled>{{dimension}}</option>
+                        <option value="Dimension C-137">Dimension C-137</option>
                         <option value="Post-Apocalyptic Dimension">Post-Apocalyptic Dimension</option>
                         <option value="Replacement Dimension">Replacement Dimension</option>
                         <option value="Cronenberg Dimension">Cronenberg Dimension</option>
@@ -41,19 +42,17 @@
                     <textarea class="form-control" id="description" rows="3"
                         name="description">{{description}}</textarea>
                 </div>
+
                 <div class="mb-3">
-                    <p>Location:</p>
-                    <div class="mb-3">
-                        <label for="longitude" class="form-label">Longitude:</label>
-                        <input type="text" class="form-control" id="longitude" name="longitude"
-                            value="{{location.coordinates.[0]}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="latitude" class="form-label">Latitude:</label>
-                        <input type="text" class="form-control" id="latitude" name="latitude"
-                            value="{{location.coordinates.[1]}}">
-                    </div>
+                    <label for="location" class="form-label">Location:</label>
+                    <input type="text" class="form-control" id="location" name="location">
+                    <div class="form-text">If you don't want to change the location dont write anything</div>
+
                 </div>
+                <input type="hidden" class="form-control" id="longitude" name="longitude"
+                    value="{{location.coordinates.[1]}}">
+                <input type="hidden" class="form-control" id="latitude" name="latitude"
+                    value="{{location.coordinates.[0]}}">
                 <input type="hidden" name="id" value="{{id}}">
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-dark block">Save Edit</button>
@@ -65,3 +64,8 @@
     </div>
 
 </div>
+
+<script src="/js/autocomplete.js"></script>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqYaQFt-ObweAgDe4qRqrW8xZ6USdvK3E&libraries=places&callback=initAutocomplete"></script>

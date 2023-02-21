@@ -2,14 +2,13 @@
     <div class="col-6">
         <div class="card mb-3">
             <div class="card-body">
+                <input type="hidden" name="id" id="id" value="{{events.id}}">
                 <img src="{{events.image}}" class="img-fluid rounded-start" alt="{{events.title}}">
                 <h5 class="card-title">Title:{{events.title}}</h5>
-                <p class="card-title">Dimension:{{events.dimension}}</p>
+                <p class="card-text">Dimension:{{events.dimension}}</p>
                 <p class="card-text">Organizer:{{events.organizer.username}}</p>
                 <p class="card-text">Date:{{events.date}}</p>
                 <p class="card-text">Description:{{events.description}}</p>
-                <p class="card-text">Location: Longitude: {{events.location.coordinates.[0]}} Latitude:
-                    {{events.location.coordinates.[1]}}</p>
                 {{!-- {{#each participants}}
                 <p> Participants:{{username}}</p>
                 {{/each}} --}}
@@ -36,6 +35,8 @@
     </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/map.js"></script>
 <script
     src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDqYaQFt-ObweAgDe4qRqrW8xZ6USdvK3E"></script>

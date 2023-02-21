@@ -18,4 +18,12 @@ router.get('/events', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get('/events/:id', (req, res, next) => {
+    const { id } = req.params
+    Event
+        .findById(id)
+        .then(event => res.json(event))
+        .catch(err => next(err))
+})
+
 module.exports = router

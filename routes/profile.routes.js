@@ -47,7 +47,7 @@ router.post('/:id/delete', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
     const { id } = req.params
     User
         .findByIdAndDelete(id)
-        .then(res.redirect('/'))
+        .then(res.redirect('/community'))
         .catch(err => next(err))
 
 })

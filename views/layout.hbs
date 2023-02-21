@@ -18,13 +18,10 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
-         <div class="collapse navbar-collapse" id="navbarNav">
+         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/">Home</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/community">Community</a>
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -39,7 +36,7 @@
                </li>
                {{#if currentUser}}
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/profile/{{currentUser._id}}">Profile</a>
+                  <a class="nav-link active" aria-current="page" href="/community">Community</a>
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -51,21 +48,26 @@
                      <li><a class="dropdown-item" href="/events/create">Create an event</a></li>
                   </ul>
                   {{/if}}
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                     aria-expanded="false">
-                     Auth
-                  </a>
-                  <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="/signup">Singup</a></li>
-                     <li><a class="dropdown-item" href="/login">Login</a></li>
-                     <li>
-                        <hr class="dropdown-divider">
-                     </li>
-                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                  </ul>
-               </li>
             </ul>
+            {{#if currentUser}}
+
+            <div class="navbar-nav align-items-center">
+               <a class="nav-link" href="/logout">Log out</a>
+               <a class="navbar-brand mx-4" href="/profile/{{currentUser._id}}"><img class="avatarNavBar"
+                     src="{{currentUser.avatarUrl}}" alt="{{currentUser.username}}"></a>
+            </div>
+            {{/if}}
+            {{#unless currentUser}}
+            <div class="navbar-nav align-items-center">
+               <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/signup">Singup</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/login">Login</a>
+               </li>
+            </div>
+            {{/unless}}
+
          </div>
       </div>
    </nav>

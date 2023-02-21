@@ -88,7 +88,19 @@ router.post('/:id/delete', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
         .catch(err => next(err))
 })
 
-// router.post('/:id/add-events')
+router.post('/:id/add-event', isLoggedIn, (req, res, next) => {
+    const { id } = req.params
+    // const { participants } = req.body
+    const { user_id } = req.session.currentUser._id
+
+    Event
+        .findByIdAndUpdate(id, { $addToSet: { participants: user_id } })
+        .then(() => res.redirect(`/events/${id}`))
+        .catch(err => next(err))
+
+
+
+})
 
 
 

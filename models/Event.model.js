@@ -29,7 +29,7 @@ const eventSchema = new Schema(
         }],
 
         date: {
-            type: Date,
+            type: String,
             required: true
         },
 

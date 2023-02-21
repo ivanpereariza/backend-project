@@ -16,7 +16,8 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
       validate: {
-        validator: value => ['@gmail.com', '@hotmail.com', '@outloock.com'].some(mail => value.endsWith(mail))
+        validator: value => ['@gmail.com', '@hotmail.com', '@outloock.com'].some(mail => value.endsWith(mail)),
+        message: 'Only valids emails'
       }
     },
     password: {

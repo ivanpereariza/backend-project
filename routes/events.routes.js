@@ -24,6 +24,7 @@ router.post('/create', isLoggedIn, fileUploader.single('image'), (req, res, next
 
     const { title, description, dimension, date, longitude, latitude, id: organizer } = req.body
     req.file ? image = req.file.path : image = undefined
+    console.log(date)
     const location = {
         type: 'Point',
         coordinates: [latitude, longitude]

@@ -41,7 +41,7 @@ const userSchema = new Schema(
       type: String,
       enum: ['Dimension C-137', 'Post-Apocalyptic Dimension', 'Replacement Dimension', 'Cronenberg Dimension', 'Testicle Monster Dimension'],
     },
-    favorites: {
+    favorites: [{
       characters: {
         type: [String],
       },
@@ -51,7 +51,7 @@ const userSchema = new Schema(
       episodies: {
         type: [String],
       },
-    },
+    }],
   },
   {
     timestamps: true

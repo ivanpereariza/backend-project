@@ -1,11 +1,30 @@
 const express = require('express')
 const { takeIdsArray } = require('../utils/takeIdsUrl')
 const router = express.Router()
+const User = require('../models/User.model')
 
 const ApiService = require('./../services/api.service')
 const { nextPage, prevPage } = require('./../utils/pages')
 
 const locationsApi = new ApiService
+
+router.post('/:id/add-favorites', (req, res, next) => {
+    const { id } = req.params
+    const user_id = req.session.currentUser._id
+    User
+        .findByIdAndUpdate(user_id, { $addToSet: { 'favorites.locations': id } })
+        .then(() => res.redirect(`/locations/details/${id}`))
+        .catch(err => next(err))
+})
+
+router.post('/:id/quit-favorites', (req, res, next) => {
+    const { id } = req.params
+    const user_id = req.session.currentUser._id
+    User
+        .findByIdAndUpdate(user_id, { $pull: { 'favorites.locations': id } })
+        .then(() => res.redirect(`/locations/details/${id}`))
+        .catch(err => next(err))
+})
 
 router.get('/:page', (req, res, next) => {
     const { page } = req.params
@@ -21,14 +40,25 @@ router.get('/:page', (req, res, next) => {
 
 router.get('/details/:id', (req, res, next) => {
     const { id } = req.params
+
+
     locationsApi
         .getLocationById(id)
         .then(({ data }) => {
             data.residents = takeIdsArray(data.residents, "character")
-            console.log(data.residents)
-            res.render('wiki/locations/details-locations', { location: data })
-        })
-        .catch(err => next(err))
+            locationsApi
+                .getCharacterById(data.residents)
+                .then(char => {
+                    if (char.data.length) {
+                        char = char.data
+                    } else {
+                        char = [char.data]
+                    }
+                    console.log(data.residents)
+
+                    res.render('wiki/locations/details-locations', { location: data, char })
+                })
+        }).catch(err => next(err))
 })
 
 module.exports = router

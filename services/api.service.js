@@ -16,6 +16,10 @@ class ApiService {
         return this.api.get(`/character/${id}`)
     }
 
+    getCharactersFilter(page, name, species, status, gender) {
+        return this.api.get(`character?page=${page}&name=${name}&status=${status}&species=${species}&gender=${gender}`)
+    }
+
     getAllLocations(page) {
         return this.api.get(`/location?page=${page}`)
     }

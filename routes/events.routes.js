@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-const User = require('../models/User.model')
 const Event = require('../models/Event.model')
 const fileUploader = require('../config/cloudinary.config');
 const { isLoggedIn, checkRole } = require('./../middlewares/route-guards')
@@ -79,7 +78,7 @@ router.post('/:id/edit', isLoggedIn, checkRole('EDIT', 'ADMIN'), fileUploader.si
 
 })
 
-router.post('/:id/delete', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+router.post('/:id/delete', isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
 

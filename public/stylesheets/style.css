@@ -30,8 +30,17 @@ body {
   width: auto;
 }
 
+.li-participants {
+  list-style-type: none;
+}
+
 .avatarNavBar {
   height: 40px;
   width: 40px;
   border-radius: 50%;
+}
+
+.all-char img {
+  width: auto;
+  height: 50px;
 }

@@ -8,18 +8,35 @@
                             <h5 class="card-title">Name: {{location.name}}</h5>
                             <p class="card-title">Type: {{location.type}}</p>
                             <p class="card-text">Dimension: {{location.dimension}}</p>
+                            {{#if currentUser}}
+                            <div class="row mt-4">
+                                <div class="col-md-3">
+                                    <form action="/locations/{{location.id}}/add-favorites" method="POST">
+                                        <input type="submit" value="Add favorite" class="btn btn-dark btn-sm">
+                                    </form>
+                                </div>
+                                <div class="col-md-3">
+                                    <form action="/locations/{{location.id}}/quit-favorites" method="POST">
+                                        <input type="submit" value="Quit favorites" class="btn btn-dark btn-sm">
+                                    </form>
+                                </div>
+                            </div>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <a href="/locations/1" class="btn btn-dark">Back to all locations</a>
     <div class="row">
-        {{#each location.residents}}
+        {{#if location.residents}}
+        <p> Residents in this location:</p>
+        {{#each char}}
         <div class="col-2">
-            <a href="/characters/details/{{this}}" class="btn btn-dark">See character {{this}}</a>
+            <a href="/characters/details/{{id}}" class="btn btn-dark all-char"><img src="{{image}}" alt="">{{name}}</a>
         </div>
         {{/each}}
+        {{/if}}
     </div>
-    <a href="/locations/1" class="btn btn-dark">Back to all locations</a>
 </div>

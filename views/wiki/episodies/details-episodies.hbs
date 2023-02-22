@@ -8,6 +8,20 @@
                             <h5 class="card-title">Name: {{episode.name}}</h5>
                             <p class="card-title">Air date: {{episode.air_date}}</p>
                             <p class="card-text">Episode: {{episode.episode}}</p>
+                            {{#if currentUser}}
+                            <div class="row mt-4">
+                                <div class="col-md-3">
+                                    <form action="/episodies/{{episode.id}}/add-favorites" method="POST">
+                                        <input type="submit" value="Add favorite" class="btn btn-dark btn-sm">
+                                    </form>
+                                </div>
+                                <div class="col-md-3">
+                                    <form action="/episodies/{{episode.id}}/quit-favorites" method="POST">
+                                        <input type="submit" value="Quit favorites" class="btn btn-dark btn-sm">
+                                    </form>
+                                </div>
+                            </div>
+                            {{/if}}
                         </div>
                     </div>
                 </div>

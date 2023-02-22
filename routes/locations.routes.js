@@ -26,6 +26,38 @@ router.post('/:id/quit-favorites', (req, res, next) => {
         .catch(err => next(err))
 })
 
+
+router.get('/results/:page', (req, res, next) => {
+    let { name, type, dimension } = req.query
+    const { page } = req.params
+    name ? name : name = ''
+    type ? type : type = ''
+    dimension ? dimension : dimension = ''
+
+    const promises = []
+
+    for (let i = 1; i <= 7; i++) {
+        promises.push(locationsApi.getAllLocations(i))
+    }
+
+    Promise
+        .all(promises)
+        .then(results => {
+            console.log(results)
+        })
+
+
+    // locationsApi
+    //     .getLocationsFilter(page, name, type, dimension)
+    //     .then(({ data }) => res.render('wiki/episodies/results-episodies', {
+    //         episodies: data.results,
+    //         nextPage: nextPage(data, page),
+    //         previousPage: prevPage(data, page),
+    //         season
+    //     }))
+    //     .catch(err => next(err))
+})
+
 router.get('/:page', (req, res, next) => {
     const { page } = req.params
     locationsApi

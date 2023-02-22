@@ -3,7 +3,8 @@ const router = express.Router()
 const User = require('./../models/User.model')
 const fileUploader = require('../config/cloudinary.config')
 const { isLoggedIn, checkRole, isOwnerOrAdmin } = require('./../middlewares/route-guards')
-
+const Apiservice = require('./../services/api.service')
+const infoApi = new Apiservice
 
 
 router.get('/:id', isLoggedIn, (req, res, next) => {
@@ -12,18 +13,49 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
     User
         .findById(id)
         .then(user => {
-            const isADMIN = req.session.currentUser?.role === "ADMIN"
-            const isUserNoADMIN = () => {
-                if (req.session.currentUser._id === id && req.session.currentUser.role !== "ADMIN") return true
-            }
-            res.render('user/profile', {
-                user,
-                isADMIN,
-                isUserNoADMIN
-            })
+
+            const promises = [
+                infoApi
+                    .getCharacterById(user.favorites.characters),
+                infoApi
+                    .getLocationById(user.favorites.locations),
+                infoApi
+                    .getEpisodeById(user.favorites.episodies)
+            ]
+
+            Promise
+                .all(promises)
+                .then(results => {
+                    const favCharacters = results[0]
+                    const favLocations = results[1]
+                    const favEpisodies = results[2]
+                    const isADMIN = req.session.currentUser?.role === "ADMIN"
+                    const isUserNoADMIN = () => {
+                        if (req.session.currentUser._id === id && req.session.currentUser.role !== "ADMIN") return true
+                    }
+                    res.render('user/profile', {
+                        user, favCharacters, favLocations, favEpisodies, isADMIN, isUserNoADMIN
+                    })
+                })
+                .catch(err => next(err))
         })
-        .catch(err => next(err))
 })
+//     User
+//         .findById(id)
+//         .then(user => {
+//             console.log(user.favorites[0].characters)
+//             const isADMIN = req.session.currentUser?.role === "ADMIN"
+//             const isUserNoADMIN = () => {
+//                 if (req.session.currentUser._id === id && req.session.currentUser.role !== "ADMIN") return true
+//             }
+//             res.render('user/profile', {
+//                 user,
+//                 isADMIN,
+//                 isUserNoADMIN
+//             })
+//         })
+//         .catch(err => next(err))
+// })
 
 router.get('/:id/edit', isLoggedIn, isOwnerOrAdmin, (req, res, next) => {
     const { id } = req.params

@@ -16,6 +16,9 @@
                     <input type="submit" value="Results" class="btn btn-dark">
                 </div>
             </div>
+            {{#if errorMessage}}
+            <p class="errorMessage mt-3">{{errorMessage}}</p>
+            {{/if}}
         </form>
         {{#each episodies}}
         <div class="col-xl-3 col-lg-4 col-md-5 my-3">

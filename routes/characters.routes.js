@@ -46,12 +46,16 @@ router.get('/results/:page', (req, res, next) => {
             previousPage: prevPage(data, page),
             name, species, status, gender
         }))
-        .catch(err => next(err))
+        .catch(err => {
+            console.log(err)
+            res.redirect('/characters/1?errorMessage=Dont find anything')
+        })
 })
 
 router.get('/:page', (req, res, next) => {
 
     const { page } = req.params
+    const { errorMessage } = req.query
 
     charactersApi
         .getAllCharacters(page)
@@ -59,6 +63,7 @@ router.get('/:page', (req, res, next) => {
             characters: data.results,
             nextPage: nextPage(data, page),
             previousPage: prevPage(data, page),
+            errorMessage
         }))
         .catch(err => next(err))
 })

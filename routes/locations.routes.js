@@ -40,40 +40,34 @@ router.get('/results/:page', (req, res, next) => {
     type = type || ''
     dimension = dimension || ''
 
-    const promises = []
-
-    for (let i = 1; i <= 7; i++) {
-        promises.push(locationsApi.getAllLocations(i))
-    }
-
-    Promise
-        .all(promises)
-        .then(results => {
-            console.log(results)
+    locationsApi
+        .getLocationsFilter(page, name, type, dimension)
+        .then(({ data }) => {
+            console.log(data)
+            res.render('wiki/locations/results-locations', {
+                locations: data.results,
+                nextPage: nextPage(data, page),
+                previousPage: prevPage(data, page),
+                name, type, dimension
+            })
         })
-
-
-    // locationsApi
-    //     .getLocationsFilter(page, name, type, dimension)
-    //     .then(({ data }) => res.render('wiki/episodies/results-episodies', {
-    //         episodies: data.results,
-    //         nextPage: nextPage(data, page),
-    //         previousPage: prevPage(data, page),
-    //         season
-    //     }))
-    //     .catch(err => next(err))
+        .catch(err => {
+            console.log(err)
+            res.redirect('/locations/1?errorMessage=Dont find anything')
+        })
 })
 
 router.get('/:page', (req, res, next) => {
 
     const { page } = req.params
-
+    const { errorMessage } = req.query
     locationsApi
         .getAllLocations(page)
         .then(({ data }) => res.render('wiki/locations/list-locations', {
             locations: data.results,
             nextPage: nextPage(data, page),
             previousPage: prevPage(data, page),
+            errorMessage
         }))
         .catch(err => next(err))
 })
@@ -89,13 +83,16 @@ router.get('/details/:id', (req, res, next) => {
             locationsApi
                 .getCharacterById(data.residents)
                 .then(character => {
+
                     let char = character.data.length ? character.data : [character.data]
 
-                    console.log(data.residents)
+
 
                     res.render('wiki/locations/details-locations', { location: data, char })
                 })
-        }).catch(err => next(err))
+                .catch(err => next(err))
+        })
+        .catch(err => next(err))
 })
 
 module.exports = router

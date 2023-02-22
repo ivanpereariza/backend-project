@@ -43,12 +43,16 @@ router.get('/results/:page', (req, res, next) => {
             previousPage: prevPage(data, page),
             season
         }))
-        .catch(err => next(err))
+        .catch(err => {
+            console.log(err)
+            res.redirect('/episodies/1?errorMessage=Dont find anything')
+        })
 })
 
 router.get('/:page', (req, res, next) => {
 
     const { page } = req.params
+    const { errorMessage } = req.query
 
     episodiesApi
         .getAllEpisodies(page)
@@ -56,6 +60,7 @@ router.get('/:page', (req, res, next) => {
             episodies: data.results,
             nextPage: nextPage(data, page),
             previousPage: prevPage(data, page),
+            errorMessage
         }))
         .catch(err => next(err))
 })
@@ -64,11 +69,20 @@ router.get('/details/:id', (req, res, next) => {
 
     const { id } = req.params
 
+
     episodiesApi
         .getEpisodeById(id)
         .then(({ data }) => {
             data.characters = takeIdsArray(data.characters, "character")
-            res.render('wiki/episodies/details-episodies', { episode: data })
+            episodiesApi
+                .getCharacterById(data.characters)
+                .then(character => {
+
+                    let char = character.data.length ? character.data : [character.data]
+
+                    res.render('wiki/episodies/details-episodies', { episode: data, char })
+                })
+                .catch(err => next(err))
         })
         .catch(err => next(err))
 })

@@ -29,9 +29,9 @@
         </div>
     </div>
     <div class="row">
-        {{#each episode.characters}}
+        {{#each char}}
         <div class="col-2">
-            <a href="/characters/details/{{this}}" class="btn btn-dark">See character {{this}}</a>
+            <a href="/characters/details/{{id}}" class="btn btn-dark all-char"><img src="{{image}}" alt="">{{name}}</a>
         </div>
         {{/each}}
     </div>

@@ -8,27 +8,98 @@
                 <div class="col">
                     <select class="form-select" name="type" id="type">
                         <option value="" selected>Select the type</option>
-                        <option value="S01">Season 1</option>
-                        <option value="S02">Season 2</option>
-                        <option value="S03">Season 3</option>
-                        <option value="S04">Season 4</option>
-                        <option value="S05">Season 5</option>
+                        <option value="Planet">Planet</option>
+                        <option value="Cluster">Cluster</option>
+                        <option value="Space station">Space station</option>
+                        <option value="Microverse">Microverse</option>
+                        <option value="TV">TV</option>
+                        <option value="Resort">Resort</option>
+                        <option value="Fantasy town">Fantasy town</option>
+                        <option value="Dream">Dream</option>
+                        <option value="Dimension">Dimension</option>
+                        <option value="Menagerie">Menagerie</option>
+                        <option value="Game">Game</option>
+                        <option value="Customs">Customs</option>
+                        <option value="Daycare">Daycare</option>
+                        <option value="Dwarf planet (Celestial Dwarf)">Dwarf planet (Celestial Dwarf)</option>
+                        <option value="Miniverse">Miniverse</option>
+                        <option value="Teenyverse">Teenyverse</option>
+                        <option value="Box">Box</option>
+                        <option value="Spacecraft">Spacecraft</option>
+                        <option value="Artificially generated world">Artificially generated world</option>
+                        <option value="Machine">Machine</option>
+                        <option value="Arcade">Arcade</option>
+                        <option value="Spa">Spa</option>
+                        <option value="Quadrant">Quadrant</option>
+                        <option value="Quasar">Quasar</option>
+                        <option value="Mount">Mount</option>
+                        <option value="Liquid">Liquid</option>
+                        <option value="Convention">Convention</option>
+                        <option value="Woods">Woods</option>
+                        <option value="Diegesis">Diegesis</option>
+                        <option value="Non-Diegetic Alternative Reality">Non-Diegetic Alternative Reality</option>
+                        <option value="Nightmare">Nightmare</option>
+                        <option value="Asteroid">Asteroid</option>
+                        <option value="Acid Plant">Acid Plant</option>
+                        <option value="Reality">Reality</option>
+                        <option value="Death Star">Death Star</option>
+                        <option value="Base">Base</option>
+                        <option value="Elemental Rings">Elemental Rings</option>
+                        <option value="Human">Human</option>
+                        <option value="Space">Space</option>
+                        <option value="Hell">Hell</option>
+                        <option value="Police Department">Police Department</option>
+                        <option value="Country">Country</option>
+                        <option value="Consciousness">Consciousness</option>
+                        <option value="Memory">Memory</option>
+                        <option value="unknown">unknown</option>
                     </select>
                 </div>
                 <div class="col">
                     <select class="form-select" name="dimension" id="dimension">
                         <option value="" selected>Select the dimension</option>
-                        <option value="S01">Season 1</option>
-                        <option value="S02">Season 2</option>
-                        <option value="S03">Season 3</option>
-                        <option value="S04">Season 4</option>
-                        <option value="S05">Season 5</option>
+                        <option value="Dimension C-137">Dimension C-137</option>
+                        <option value="Post-Apocalyptic Dimension">Post-Apocalyptic Dimension</option>
+                        <option value="Replacement Dimension">Replacement Dimension</option>
+                        <option value="Cronenberg Dimension">Cronenberg Dimension</option>
+                        <option value="Fantasy Dimension">Fantasy Dimension</option>
+                        <option value="Dimension 5-126">Dimension 5-126</option>
+                        <option value="Testicle Monster Dimension">Testicle Monster Dimension</option>
+                        <option value="Cromulon Dimension">Cromulon Dimension</option>
+                        <option value="Dimension C-500A">Dimension C-500A</option>
+                        <option value="Dimension K-83">Dimension K-83</option>
+                        <option value="Dimension J19ζ7">Dimension J19ζ7</option>
+                        <option value="Eric Stoltz Mask Dimension">Eric Stoltz Mask Dimension</option>
+                        <option value="Evil Rick's Target Dimension">Evil Rick's Target Dimension</option>
+                        <option value="Giant Telepathic Spiders Dimension">Giant Telepathic Spiders Dimension</option>
+                        <option value="Unknown dimension">Unknown dimension</option>
+                        <option value="Dimension K-22">Dimension K-22</option>
+                        <option value="Dimension D-99">Dimension D-99</option>
+                        <option value="Dimension D716">Dimension D716</option>
+                        <option value="Dimension D716-B">Dimension D716-B</option>
+                        <option value="Dimension D716-C">Dimension D716-C</option>
+                        <option value="Dimension J-22">Dimension J-22</option>
+                        <option value="Dimension C-35">Dimension C-35</option>
+                        <option value="Pizza Dimension">Pizza Dimension</option>
+                        <option value="Phone Dimension">Phone Dimension</option>
+                        <option value="Chair Dimension">Chair Dimension</option>
+                        <option value="Fascist Dimension">Fascist Dimension</option>
+                        <option value="Fascist Shrimp Dimension">Fascist Shrimp Dimension</option>
+                        <option value="Fascist Teddy Bear Dimension">Fascist Teddy Bear Dimension</option>
+                        <option value="Wasp Dimension">Wasp Dimension</option>
+                        <option value="Tusk Dimension">Tusk Dimension</option>
+                        <option value="Magic Dimension">Magic Dimension</option>
+                        <option value="Merged Dimension">Merged Dimension</option>
+                        <option value="unknown">unknown</option>
                     </select>
                 </div>
                 <div class="col">
                     <input type="submit" value="Results" class="btn btn-dark">
                 </div>
             </div>
+            {{#if errorMessage}}
+            <p class="errorMessage mt-3">{{errorMessage}}</p>
+            {{/if}}
         </form>
         {{#each locations}}
         <div class="col-xl-3 col-lg-4 col-md-5 my-3">

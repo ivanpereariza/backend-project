@@ -8,31 +8,31 @@ const infoApi = new Apiservice
 
 
 router.get('/:id', isLoggedIn, (req, res, next) => {
+
     const { id } = req.params
 
     User
         .findById(id)
         .then(user => {
 
+            const { favorites: { characters, locations, episodies } } = user
+
             const promises = [
-                infoApi
-                    .getCharacterById(user.favorites.characters),
-                infoApi
-                    .getLocationById(user.favorites.locations),
-                infoApi
-                    .getEpisodeById(user.favorites.episodies)
+                infoApi.getCharacterById(characters),
+                infoApi.getLocationById(locations),
+                infoApi.getEpisodeById(episodies)
             ]
 
             Promise
                 .all(promises)
-                .then(results => {
-                    const favCharacters = results[0]
-                    const favLocations = results[1]
-                    const favEpisodies = results[2]
+                .then(([favCharacters, favLocations, favEpisodies]) => {
+
+                    // MOVE TO UTILS
                     const isADMIN = req.session.currentUser?.role === "ADMIN"
                     const isUserNoADMIN = () => {
                         if (req.session.currentUser._id === id && req.session.currentUser.role !== "ADMIN") return true
                     }
+
                     res.render('user/profile', {
                         user, favCharacters, favLocations, favEpisodies, isADMIN, isUserNoADMIN
                     })
@@ -58,7 +58,9 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
 // })
 
 router.get('/:id/edit', isLoggedIn, isOwnerOrAdmin, (req, res, next) => {
+
     const { id } = req.params
+
     User
         .findById(id)
         .then(user => res.render('user/edit-profile', user))
@@ -66,8 +68,10 @@ router.get('/:id/edit', isLoggedIn, isOwnerOrAdmin, (req, res, next) => {
 })
 
 router.post('/:id/edit', isLoggedIn, isOwnerOrAdmin, fileUploader.single('avatarUrl'), (req, res, next) => {
+
     const { username, email, description, dimension, id } = req.body
-    req.file ? avatarUrl = req.file.path : avatarUrl = undefined
+    let avatarUrl = req.file?.path
+
     User
         .findByIdAndUpdate(id, { username, email, description, dimension, avatarUrl })
         .then(() => res.redirect(`/profile/${id}`))
@@ -77,20 +81,21 @@ router.post('/:id/edit', isLoggedIn, isOwnerOrAdmin, fileUploader.single('avatar
 router.post('/:id/delete', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
 
     const { id } = req.params
+
     User
         .findByIdAndDelete(id)
         .then(res.redirect('/community'))
         .catch(err => next(err))
-
 })
 
 router.post('/:id/:role', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+
     const { id, role } = req.params
+
     User
         .findByIdAndUpdate(id, { role })
         .then(() => res.redirect(`/profile/${id}`))
         .catch(err => next(err))
 })
-
 
 module.exports = router

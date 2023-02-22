@@ -2,15 +2,15 @@ const express = require('express')
 const router = express.Router()
 const { takeIdsArray } = require('../utils/takeIdsUrl')
 const User = require('../models/User.model')
-
 const ApiService = require('./../services/api.service')
 const { nextPage, prevPage } = require('./../utils/pages')
-
 const episodiesApi = new ApiService
 
 router.post('/:id/add-favorites', (req, res, next) => {
+
     const { id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
+
     User
         .findByIdAndUpdate(user_id, { $addToSet: { 'favorites.episodies': id } })
         .then(() => res.redirect(`/episodies/details/${id}`))
@@ -18,8 +18,10 @@ router.post('/:id/add-favorites', (req, res, next) => {
 })
 
 router.post('/:id/quit-favorites', (req, res, next) => {
+
     const { id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
+
     User
         .findByIdAndUpdate(user_id, { $pull: { 'favorites.episodies': id } })
         .then(() => res.redirect(`/episodies/details/${id}`))
@@ -27,9 +29,12 @@ router.post('/:id/quit-favorites', (req, res, next) => {
 })
 
 router.get('/results/:page', (req, res, next) => {
+
     let { season } = req.query
     const { page } = req.params
-    season ? season : season = ''
+
+    season = season || ''
+
     episodiesApi
         .getEpisodiesFilter(page, season)
         .then(({ data }) => res.render('wiki/episodies/results-episodies', {
@@ -42,7 +47,9 @@ router.get('/results/:page', (req, res, next) => {
 })
 
 router.get('/:page', (req, res, next) => {
+
     const { page } = req.params
+
     episodiesApi
         .getAllEpisodies(page)
         .then(({ data }) => res.render('wiki/episodies/list-episodies', {
@@ -54,7 +61,9 @@ router.get('/:page', (req, res, next) => {
 })
 
 router.get('/details/:id', (req, res, next) => {
+
     const { id } = req.params
+
     episodiesApi
         .getEpisodeById(id)
         .then(({ data }) => {

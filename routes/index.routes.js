@@ -9,6 +9,8 @@ router.get("/", (req, res, next) => {
 router.get('/community', (req, res, next) => {
   User
     .find()
+    .select({ username: 1, avatarUrl: 1, dimension: 1 })
+    .sort({ username: 1 })
     .then(users => res.render('user/all-users', { users }))
     .catch(err => next(err))
 })

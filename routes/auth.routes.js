@@ -11,8 +11,9 @@ router.get("/signup", (req, res, next) => {
 })
 
 router.post('/signup', fileUploader.single('avatarUrl'), (req, res, next) => {
+
     const { email, username, description, dimension, password: planePassword } = req.body
-    req.file ? avatarUrl = req.file.path : avatarUrl = undefined
+    let avatarUrl = req.file?.path
 
     if (planePassword.length <= 4) {
         res.render('auth/signup', { errorMessage: 'The password should have 5 character minimun' })
@@ -45,6 +46,7 @@ router.post('/signup', fileUploader.single('avatarUrl'), (req, res, next) => {
 
 
 router.get('/login', isLoggedOut, (req, res, next) => {
+
     res.render('auth/login')
 })
 
@@ -67,6 +69,7 @@ router.post('/login', (req, res, next) => {
             else if (!bcrypt.compareSync(password, user.password)) {
                 res.render('auth/login', { errorMessage: 'Incorrect Password' })
             }
+
             else {
                 req.session.currentUser = user
                 res.redirect('/')
@@ -76,6 +79,7 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/logout', isLoggedIn, (req, res, next) => {
+
     req.session.destroy(() => res.redirect('/'))
 })
 

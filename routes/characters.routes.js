@@ -1,16 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User.model')
-
 const ApiService = require('./../services/api.service')
 const { nextPage, prevPage } = require('./../utils/pages')
 const { takeIdsArray, takeIdOneItem } = require('../utils/takeIdsUrl')
-
-const charactersApi = new ApiService
+const charactersApi = new ApiService()
 
 router.post('/:id/add-favorites', (req, res, next) => {
+
     const { id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
+
     User
         .findByIdAndUpdate(user_id, { $addToSet: { 'favorites.characters': id } })
         .then(() => res.redirect(`/characters/details/${id}`))
@@ -18,8 +18,10 @@ router.post('/:id/add-favorites', (req, res, next) => {
 })
 
 router.post('/:id/quit-favorites', (req, res, next) => {
+
     const { id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
+
     User
         .findByIdAndUpdate(user_id, { $pull: { 'favorites.characters': id } })
         .then(() => res.redirect(`/characters/details/${id}`))
@@ -27,12 +29,15 @@ router.post('/:id/quit-favorites', (req, res, next) => {
 })
 
 router.get('/results/:page', (req, res, next) => {
+
     let { name, species, status, gender } = req.query
     const { page } = req.params
-    species ? species : species = ''
-    name ? name : name = ''
-    status ? status : status = ''
-    gender ? gender : gender = ''
+
+    species = species || ''
+    name = name || ''
+    status = status || ''
+    gender = gender || ''
+
     charactersApi
         .getCharactersFilter(page, name, species, status, gender)
         .then(({ data }) => res.render('wiki/characters/results-characters', {
@@ -45,6 +50,7 @@ router.get('/results/:page', (req, res, next) => {
 })
 
 router.get('/:page', (req, res, next) => {
+
     const { page } = req.params
 
     charactersApi
@@ -60,7 +66,9 @@ router.get('/:page', (req, res, next) => {
 
 
 router.get('/details/:id', (req, res, next) => {
+
     const { id } = req.params
+
     charactersApi
         .getCharacterById(id)
         .then(({ data }) => {

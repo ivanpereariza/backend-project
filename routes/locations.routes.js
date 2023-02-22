@@ -9,8 +9,10 @@ const { nextPage, prevPage } = require('./../utils/pages')
 const locationsApi = new ApiService
 
 router.post('/:id/add-favorites', (req, res, next) => {
+
     const { id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
+
     User
         .findByIdAndUpdate(user_id, { $addToSet: { 'favorites.locations': id } })
         .then(() => res.redirect(`/locations/details/${id}`))
@@ -18,8 +20,10 @@ router.post('/:id/add-favorites', (req, res, next) => {
 })
 
 router.post('/:id/quit-favorites', (req, res, next) => {
+
     const { id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
+
     User
         .findByIdAndUpdate(user_id, { $pull: { 'favorites.locations': id } })
         .then(() => res.redirect(`/locations/details/${id}`))
@@ -28,11 +32,13 @@ router.post('/:id/quit-favorites', (req, res, next) => {
 
 
 router.get('/results/:page', (req, res, next) => {
+
     let { name, type, dimension } = req.query
     const { page } = req.params
-    name ? name : name = ''
-    type ? type : type = ''
-    dimension ? dimension : dimension = ''
+
+    name = name || ''
+    type = type || ''
+    dimension = dimension || ''
 
     const promises = []
 
@@ -59,7 +65,9 @@ router.get('/results/:page', (req, res, next) => {
 })
 
 router.get('/:page', (req, res, next) => {
+
     const { page } = req.params
+
     locationsApi
         .getAllLocations(page)
         .then(({ data }) => res.render('wiki/locations/list-locations', {
@@ -71,8 +79,8 @@ router.get('/:page', (req, res, next) => {
 })
 
 router.get('/details/:id', (req, res, next) => {
-    const { id } = req.params
 
+    const { id } = req.params
 
     locationsApi
         .getLocationById(id)
@@ -80,12 +88,9 @@ router.get('/details/:id', (req, res, next) => {
             data.residents = takeIdsArray(data.residents, "character")
             locationsApi
                 .getCharacterById(data.residents)
-                .then(char => {
-                    if (char.data.length) {
-                        char = char.data
-                    } else {
-                        char = [char.data]
-                    }
+                .then(character => {
+                    let char = character.data.length ? character.data : [character.data]
+
                     console.log(data.residents)
 
                     res.render('wiki/locations/details-locations', { location: data, char })

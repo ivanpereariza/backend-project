@@ -26,6 +26,21 @@ router.post('/:id/quit-favorites', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get('/results/:page', (req, res, next) => {
+    let { season } = req.query
+    const { page } = req.params
+    season ? season : season = ''
+    episodiesApi
+        .getEpisodiesFilter(page, season)
+        .then(({ data }) => res.render('wiki/episodies/results-episodies', {
+            episodies: data.results,
+            nextPage: nextPage(data, page),
+            previousPage: prevPage(data, page),
+            season
+        }))
+        .catch(err => next(err))
+})
+
 router.get('/:page', (req, res, next) => {
     const { page } = req.params
     episodiesApi

@@ -28,12 +28,20 @@ class ApiService {
         return this.api.get(`/location/${id}`)
     }
 
+    getLocationsFilter(page, name, type, dimension) {
+        return this.api.get(`location?page=${page}&name=${name}&type=${type}&dimension=${dimension}`)
+    }
+
     getAllEpisodies(page) {
         return this.api.get(`/episode?page=${page}`)
     }
 
     getEpisodeById(id) {
         return this.api.get(`/episode/${id}`)
+    }
+
+    getEpisodiesFilter(page, season) {
+        return this.api.get(`episode?page=${page}&episode=${season}`)
     }
 }
 

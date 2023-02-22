@@ -1,5 +1,35 @@
 <div class="container">
     <div class="row justify-content-center">
+        <form action="/locations/results/1" method="GET">
+            <div class="my-3 row">
+                <div class="col">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                </div>
+                <div class="col">
+                    <select class="form-select" name="type" id="type">
+                        <option value="" selected>Select the type</option>
+                        <option value="S01">Season 1</option>
+                        <option value="S02">Season 2</option>
+                        <option value="S03">Season 3</option>
+                        <option value="S04">Season 4</option>
+                        <option value="S05">Season 5</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="form-select" name="dimension" id="dimension">
+                        <option value="" selected>Select the dimension</option>
+                        <option value="S01">Season 1</option>
+                        <option value="S02">Season 2</option>
+                        <option value="S03">Season 3</option>
+                        <option value="S04">Season 4</option>
+                        <option value="S05">Season 5</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input type="submit" value="Results" class="btn btn-dark">
+                </div>
+            </div>
+        </form>
         {{#each locations}}
         <div class="col-xl-3 col-lg-4 col-md-5 my-3">
             <div class="card" style="width: 18rem;">

@@ -32,12 +32,13 @@
         {{/each}}
         <div class="row justify-content-center">
             <div class="col-2">{{#if previousPage}}
-                <a href="/episodies/{{previousPage}}" class="btn btn-dark mb-3">Previous page</a>
+                <a href="/episodies/results/{{previousPage}}?season={{season}}" class="btn btn-dark mb-3">Previous
+                    page</a>
                 {{/if}}
             </div>
             <div class="col-2">
                 {{#if nextPage}}
-                <a href="/episodies/{{nextPage}}" class="btn btn-dark mb-3">Next page</a>
+                <a href="/episodies/results/{{nextPage}}?season={{season}}" class="btn btn-dark mb-3">Next page</a>
                 {{/if}}
             </div>
         </div>

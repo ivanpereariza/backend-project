@@ -27,14 +27,24 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
                 .all(promises)
                 .then(([favCharacters, favLocations, favEpisodies]) => {
 
+                    favCharacters = favCharacters.data.length ? favCharacters.data : [favCharacters.data]
+                    favLocations = favLocations.data.length ? favLocations.data : [favLocations.data]
+                    favEpisodies = favEpisodies.data.length ? favEpisodies.data : [favEpisodies.data]
+
                     // MOVE TO UTILS
                     const isADMIN = req.session.currentUser?.role === "ADMIN"
                     const isUserNoADMIN = () => {
                         if (req.session.currentUser._id === id && req.session.currentUser.role !== "ADMIN") return true
                     }
 
+                    console.log(favCharacters[0].info)
+
                     res.render('user/profile', {
-                        user, favCharacters, favLocations, favEpisodies, isADMIN, isUserNoADMIN
+                        user,
+                        favCharacters,
+                        favLocations,
+                        favEpisodies,
+                        isADMIN, isUserNoADMIN
                     })
                 })
                 .catch(err => next(err))

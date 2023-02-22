@@ -53,7 +53,72 @@
         </div>
     </div>
 </div>
-<h1>Favorites characters</h1>
-{{#each favoriteCharacters}}
+{{#unless favCharacters.[0].info}}
+<div class="container">
+    <h5>Favourite Characters</h5>
+    <div class="row justify-content-center">
+        {{#each favCharacters}}
+        <div class="col-md-3 my-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{{image}}" class="card-img-top img-fluid mx-auto d-block avatar p-3" alt="{{name}}">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Name: {{name}}</h5>
+                    <p class="card-text text-center">Status: {{status}}</p>
+                    <p class="card-text text-center">Species: {{species}}</p>
+                    <p class="card-text text-center">Gender: {{gender}}</p>
+                    <div class="row px-5">
+                        <a href="/characters/details/{{id}}" class="btn btn-dark">DETAILS</a>
+                    </div>
 
-{{/each}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/unless}}
+
+{{#unless favLocations.[0].info}}
+<div class="container">
+    <h5>Favourite Locations</h5>
+    <div class="row justify-content-center">
+        {{#each favLocations}}
+        <div class="col-md-3 my-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Name: {{name}}</h5>
+                    <p class="card-text text-center">Type: {{type}}</p>
+                    <p class="card-text text-center">Dimension: {{dimension}}</p>
+                    <div class="row px-5">
+                        <a href="/locations/details/{{id}}" class="btn btn-dark">DETAILS</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/unless}}
+
+{{#unless favEpisodies.[0].info}}
+<div class="container">
+    <h5>Favourite Episodies</h5>
+    <div class="row justify-content-center">
+        {{#each favEpisodies}}
+        <div class="col-md-3 my-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Name: {{name}}</h5>
+                    <p class="card-text text-center">{{episode}}</p>
+                    <div class="row px-5">
+                        <a href="/episodies/details/{{id}}" class="btn btn-dark">DETAILS</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/unless}}

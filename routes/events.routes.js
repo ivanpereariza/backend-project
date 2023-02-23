@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const Event = require('../models/Event.model')
 const fileUploader = require('../config/cloudinary.config');
-const { isLoggedIn, checkRole } = require('./../middlewares/route-guards')
-
+const { isLoggedIn, isOwnerOrAdminOrEditor } = require('./../middlewares/route-guards')
+const { checkIsEditOrOwnerOrAdmin } = require('./../utils/checkRoleAnduser')
 
 router.get('/', isLoggedIn, (req, res, next) => {
 
@@ -42,6 +42,17 @@ router.post('/create', isLoggedIn, fileUploader.single('image'), (req, res, next
 
 })
 
+router.get('/results', isLoggedIn, (req, res, next) => {
+
+    const { dimension } = req.query
+
+    Event
+        .find({ dimension })
+        .select({ title: 1, image: 1, dimension: 1, organizer: 1 })
+        .then(events => res.render('events/all-events', { events }))
+        .catch(err => next(err))
+})
+
 router.get('/:id', isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
@@ -50,13 +61,13 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
         .findById(id)
         .populate('organizer participants')
         .then(events => {
-            const isEditOrOwnerOrAdmin = req.session.currentUser?.role === 'EDIT' || req.session.currentUser._id === events.organizer.id || req.session.currentUser?.role === 'ADMIN'
+            const isEditOrOwnerOrAdmin = checkIsEditOrOwnerOrAdmin(req.session.currentUser, events.organizer)
             res.render('events/event-details', { events, isEditOrOwnerOrAdmin })
         })
         .catch(err => next(err))
 })
 
-router.get('/:id/edit', isLoggedIn, checkRole('EDIT', 'ADMIN'), (req, res, next) => {
+router.get('/:id/edit', isLoggedIn, isOwnerOrAdminOrEditor, (req, res, next) => {
 
     const { id } = req.params
 
@@ -66,7 +77,7 @@ router.get('/:id/edit', isLoggedIn, checkRole('EDIT', 'ADMIN'), (req, res, next)
         .catch(err => next(err))
 })
 
-router.post('/:id/edit', isLoggedIn, checkRole('EDIT', 'ADMIN'), fileUploader.single('image'), (req, res, next) => {
+router.post('/:id/edit', isLoggedIn, isOwnerOrAdminOrEditor, fileUploader.single('image'), (req, res, next) => {
 
     const { title, description, dimension, date, longitude, latitude, id } = req.body
     const location = {
@@ -82,7 +93,7 @@ router.post('/:id/edit', isLoggedIn, checkRole('EDIT', 'ADMIN'), fileUploader.si
 
 })
 
-router.post('/:id/delete', isLoggedIn, (req, res, next) => {
+router.post('/:id/delete', isLoggedIn, isOwnerOrAdminOrEditor, (req, res, next) => {
 
     const { id } = req.params
 
@@ -104,14 +115,14 @@ router.post('/:id/add-event', isLoggedIn, (req, res, next) => {
 })
 
 router.post('/:id/leave-event', isLoggedIn, (req, res, next) => {
+
     const { id } = req.params
     const { _id: user_id } = req.session.currentUser
+
     Event
         .findByIdAndUpdate(id, { $pull: { participants: user_id } })
         .then(() => res.redirect(`/events/${id}`))
         .catch(err => next(err))
-
-
 })
 
 module.exports = router

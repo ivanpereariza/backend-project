@@ -3,7 +3,7 @@
         <form action="/characters/results/1" method="GET">
             <div class="my-3 row">
                 <div class="col">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{name}}">
                 </div>
                 <div class="col">
                     <select class="form-select" name="status" id="status">
@@ -45,7 +45,7 @@
             <p class="errorMessage mt-3">{{errorMessage}}</p>
             {{/if}}
         </form>
-        {{#each characters}}
+        {{#each characters.info}}
         <div class="col-xl-3 col-lg-4 col-md-5 my-3">
             <div class="card" style="width: 18rem;">
                 <img src="{{image}}" class="card-img-top img-fluid mx-auto d-block avatar p-3" alt="{{name}}">
@@ -62,13 +62,13 @@
         </div>
         {{/each}}
         <div class="row justify-content-center">
-            <div class="col-2">{{#if previousPage}}
-                <a href="/characters/{{previousPage}}" class="btn btn-dark mb-3">Previous page</a>
+            <div class="col-2">{{#if characters.previousPage}}
+                <a href="/characters/{{characters.previousPage}}" class="btn btn-dark mb-3">Previous page</a>
                 {{/if}}
             </div>
             <div class="col-2">
-                {{#if nextPage}}
-                <a href="/characters/{{nextPage}}" class="btn btn-dark mb-3">Next page</a>
+                {{#if characters.nextPage}}
+                <a href="/characters/{{characters.nextPage}}" class="btn btn-dark mb-3">Next page</a>
                 {{/if}}
             </div>
         </div>

@@ -5,6 +5,7 @@ const fileUploader = require('../config/cloudinary.config')
 const { isLoggedIn, checkRole, isOwnerOrAdmin } = require('./../middlewares/route-guards')
 const Apiservice = require('./../services/api.service')
 const infoApi = new Apiservice
+const { checkisADMIN, checkisUserNoADMIN } = require('./../utils/checkRoleAnduser')
 
 
 router.get('/:id', isLoggedIn, (req, res, next) => {
@@ -31,13 +32,8 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
                     favLocations = favLocations.data.length ? favLocations.data : [favLocations.data]
                     favEpisodies = favEpisodies.data.length ? favEpisodies.data : [favEpisodies.data]
 
-                    // MOVE TO UTILS
-                    const isADMIN = req.session.currentUser?.role === "ADMIN"
-                    const isUserNoADMIN = () => {
-                        if (req.session.currentUser._id === id && req.session.currentUser.role !== "ADMIN") return true
-                    }
-
-                    console.log(favCharacters[0].info)
+                    const isADMIN = checkisADMIN(req.session.currentUser)
+                    const isUserNoADMIN = checkisUserNoADMIN(req.session.currentUser, id)
 
                     res.render('user/profile', {
                         user,
@@ -50,22 +46,6 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
                 .catch(err => next(err))
         })
 })
-//     User
-//         .findById(id)
-//         .then(user => {
-//             console.log(user.favorites[0].characters)
-//             const isADMIN = req.session.currentUser?.role === "ADMIN"
-//             const isUserNoADMIN = () => {
-//                 if (req.session.currentUser._id === id && req.session.currentUser.role !== "ADMIN") return true
-//             }
-//             res.render('user/profile', {
-//                 user,
-//                 isADMIN,
-//                 isUserNoADMIN
-//             })
-//         })
-//         .catch(err => next(err))
-// })
 
 router.get('/:id/edit', isLoggedIn, isOwnerOrAdmin, (req, res, next) => {
 

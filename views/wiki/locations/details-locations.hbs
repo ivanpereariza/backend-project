@@ -1,42 +1,62 @@
-<div class="container">
-    <div class="row justify-content-center mt-3">
-        <div class="col-6">
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Name: {{location.name}}</h5>
-                            <p class="card-title">Type: {{location.type}}</p>
-                            <p class="card-text">Dimension: {{location.dimension}}</p>
-                            {{#if currentUser}}
-                            <div class="row mt-4">
-                                <div class="col-md-3">
-                                    <form action="/locations/{{location.id}}/add-favorites" method="POST">
-                                        <input type="submit" value="Add favorite" class="btn btn-dark btn-sm">
-                                    </form>
+<div class="locations-img">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card my-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Name: {{location.name}}</h5>
+                                <p class="card-title">Type: {{location.type}}</p>
+                                <p class="card-text">Dimension: {{location.dimension}}</p>
+                                {{#if currentUser}}
+                                <div class="row mt-4">
+                                    <div class="col-xl-3 m-1">
+                                        <form action="/locations/{{location.id}}/add-favorites" method="POST">
+                                            <input type="submit" value="Add favorite"
+                                                class="btn btn-outline-success btn-sm">
+                                        </form>
+                                    </div>
+                                    <div class="col-xl-3 m-1">
+                                        <form action="/locations/{{location.id}}/quit-favorites" method="POST">
+                                            <input type="submit" value="Quit favorites"
+                                                class="btn btn-outline-danger btn-sm">
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <form action="/locations/{{location.id}}/quit-favorites" method="POST">
-                                        <input type="submit" value="Quit favorites" class="btn btn-dark btn-sm">
-                                    </form>
-                                </div>
+                                {{/if}}
                             </div>
-                            {{/if}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <a href="/locations/1" class="btn btn-dark">Back to all locations</a>
-    <div class="row">
-        {{#if location.residents}}
-        <p> Residents in this location:</p>
-        {{#each char}}
-        <div class="col-2">
-            <a href="/characters/details/{{id}}" class="btn btn-dark all-char"><img src="{{image}}" alt="">{{name}}</a>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Residents in {{location.name}}
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row justify-content-center">
+                            {{#each char}}
+                            <div class="col-xl-2 col-md-3 col-sm-4 col-12 m-2 all-char">
+                                <div class="row justify-content-center">
+                                    <img class="avatar" src="{{image}}" alt="{{name}}">
+                                    <a href="/characters/details/{{id}}" class="btn btn-secondary mt-2">{{name}}
+                                    </a>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        {{/each}}
-        {{/if}}
+        <a href="/locations/1" class="btn btn-light mt-3">Back to all locations</a>
     </div>
 </div>

@@ -44,3 +44,21 @@ body {
   width: auto;
   height: 50px;
 }
+
+.index-img {
+  height: 100vh;
+  background-image: url('/images/index.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+}
+
+.locations-img {
+  height: 100vh;
+  background-image: url('/images/2.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+
+
+}

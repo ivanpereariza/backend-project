@@ -1,74 +1,77 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <form action="/characters/results/1" method="GET">
-            <div class="my-3 row">
-                <div class="col">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{name}}">
+<div class="characters-img">
+    <div class="container">
+        <div class="row justify-content-center">
+            <form action="/characters/results/1" method="GET">
+                <div class="my-3 row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+                            value="{{name}}">
+                    </div>
+                    <div class="col">
+                        <select class="form-select" name="status" id="status">
+                            <option value="" selected>Select the status</option>
+                            <option value="Alive">Alive</option>
+                            <option value="Dead">Dead</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-select" name="gender" id="gender">
+                            <option value="" selected>Select the gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Genderless">Genderless</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-select" name="species" id="species">
+                            <option value="" selected>Select the species</option>
+                            <option value="Human">Human</option>
+                            <option value="Alien">Alien</option>
+                            <option value="Humanoid">Humanoid</option>
+                            <option value="Poopybutthole">Poopybutthole</option>
+                            <option value="Mythological Creature">Mythological Creature</option>
+                            <option value="Animal">Animal</option>
+                            <option value="Robot">Robot</option>
+                            <option value="Cronenberg">Cronenberg</option>
+                            <option value="Disease">Disease</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="submit" value="Results" class="btn btn-light">
+                    </div>
                 </div>
-                <div class="col">
-                    <select class="form-select" name="status" id="status">
-                        <option value="" selected>Select the status</option>
-                        <option value="Alive">Alive</option>
-                        <option value="Dead">Dead</option>
-                        <option value="unknown">Unknown</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <select class="form-select" name="gender" id="gender">
-                        <option value="" selected>Select the gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Genderless">Genderless</option>
-                        <option value="unknown">Unknown</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <select class="form-select" name="species" id="species">
-                        <option value="" selected>Select the species</option>
-                        <option value="Human">Human</option>
-                        <option value="Alien">Alien</option>
-                        <option value="Humanoid">Humanoid</option>
-                        <option value="Poopybutthole">Poopybutthole</option>
-                        <option value="Mythological Creature">Mythological Creature</option>
-                        <option value="Animal">Animal</option>
-                        <option value="Robot">Robot</option>
-                        <option value="Cronenberg">Cronenberg</option>
-                        <option value="Disease">Disease</option>
-                        <option value="unknown">Unknown</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <input type="submit" value="Results" class="btn btn-dark">
-                </div>
-            </div>
-        </form>
-        {{#each characters.info}}
-        <div class="col-xl-3 col-lg-4 col-md-5 my-3">
-            <div class="card" style="width: 18rem;">
-                <img src="{{image}}" class="card-img-top img-fluid mx-auto d-block avatar p-3" alt="{{name}}">
-                <div class="card-body">
-                    <h5 class="card-title text-center">{{name}}</h5>
-                    <p class="card-text text-center">Status: {{status}}</p>
-                    <p class="card-text text-center">Species: {{species}}</p>
-                    <p class="card-text text-center">Gender: {{gender}}</p>
-                    <div class="row px-5">
-                        <a href="/characters/details/{{id}}" class="btn btn-dark">DETAILS</a>
+            </form>
+            {{#each characters.info}}
+            <div class="col-xl-3 col-lg-4 col-md-5 my-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{image}}" class="card-img-top img-fluid mx-auto d-block avatar p-3" alt="{{name}}">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{name}}</h5>
+                        <p class="card-text text-center">Status: {{status}}</p>
+                        <p class="card-text text-center">Species: {{species}}</p>
+                        <p class="card-text text-center">Gender: {{gender}}</p>
+                        <div class="row px-5">
+                            <a href="/characters/details/{{id}}" class="btn btn-dark">DETAILS</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {{/each}}
-        <div class="row justify-content-center">
-            <div class="col-2">{{#if characters.previousPage}}
-                <a href="/characters/results/{{characters.previousPage}}?name={{name}}&status={{status}}&gender={{gender}}&species={{species}}"
-                    class="btn btn-dark mb-3">Previous page</a>
-                {{/if}}
-            </div>
-            <div class="col-2">
-                {{#if characters.nextPage}}
-                <a href="/characters/results/{{characters.nextPage}}?name={{name}}&status={{status}}&gender={{gender}}&species={{species}}"
-                    class="btn btn-dark mb-3">Next page</a>
-                {{/if}}
+            {{/each}}
+            <div class="row justify-content-center">
+                <div class="col-2">{{#if characters.previousPage}}
+                    <a href="/characters/results/{{characters.previousPage}}?name={{name}}&status={{status}}&gender={{gender}}&species={{species}}"
+                        class="btn btn-light mb-3">Previous page</a>
+                    {{/if}}
+                </div>
+                <div class="col-2">
+                    {{#if characters.nextPage}}
+                    <a href="/characters/results/{{characters.nextPage}}?name={{name}}&status={{status}}&gender={{gender}}&species={{species}}"
+                        class="btn btn-light mb-3">Next page</a>
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>

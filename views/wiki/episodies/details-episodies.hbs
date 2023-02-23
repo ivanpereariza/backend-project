@@ -1,59 +1,61 @@
-<div class="container">
-    <div class="row justify-content-center mt-3">
-        <div class="col-6">
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Name: {{episode.name}}</h5>
-                            <p class="card-title">Air date: {{episode.air_date}}</p>
-                            <p class="card-text">Episode: {{episode.episode}}</p>
-                            {{#if currentUser}}
-                            <div class="row mt-4">
-                                <div class="col-xl-3 m-1">
-                                    <form action="/episodies/{{episode.id}}/add-favorites" method="POST">
-                                        <input type="submit" value="Add favorite"
-                                            class="btn btn-outline-success btn-sm">
-                                    </form>
+<div class="episodies-img">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card my-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Name: {{episode.name}}</h5>
+                                <p class="card-title">Air date: {{episode.air_date}}</p>
+                                <p class="card-text">Episode: {{episode.episode}}</p>
+                                {{#if currentUser}}
+                                <div class="row mt-4">
+                                    <div class="col-xl-3 m-1">
+                                        <form action="/episodies/{{episode.id}}/add-favorites" method="POST">
+                                            <input type="submit" value="Add favorite"
+                                                class="btn btn-outline-success btn-sm">
+                                        </form>
+                                    </div>
+                                    <div class="col-xl-3 m-1">
+                                        <form action="/episodies/{{episode.id}}/quit-favorites" method="POST">
+                                            <input type="submit" value="Quit favorites"
+                                                class="btn btn-outline-danger btn-sm">
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="col-xl-3 m-1">
-                                    <form action="/episodies/{{episode.id}}/quit-favorites" method="POST">
-                                        <input type="submit" value="Quit favorites"
-                                            class="btn btn-outline-danger btn-sm">
-                                    </form>
-                                </div>
+                                {{/if}}
                             </div>
-                            {{/if}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    Characters who appears in {{episode.name}}
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="row justify-content-center">
-                        {{#each char}}
-                        <div class="col-xl-2 col-md-3 col-sm-4 col-12 m-2 all-char">
-                            <div class="row justify-content-center">
-                                <img src="{{image}}" class="" alt="{{name}}">
-                                <a href="/characters/details/{{id}}" class="btn btn-secondary mt-2">{{name}}</a>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Characters who appears in {{episode.name}}
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row justify-content-center">
+                            {{#each char}}
+                            <div class="col-xl-2 col-md-3 col-sm-4 col-12 m-2 all-char">
+                                <div class="row justify-content-center">
+                                    <img src="{{image}}" class="" alt="{{name}}">
+                                    <a href="/characters/details/{{id}}" class="btn btn-secondary mt-2">{{name}}</a>
+                                </div>
                             </div>
+                            {{/each}}
                         </div>
-                        {{/each}}
                     </div>
                 </div>
             </div>
         </div>
+        <a href="/episodies/1" class="btn btn-light mt-3">Back to all episodies</a>
     </div>
-    <a href="/episodies/1" class="btn btn-dark mt-3">Back to all episodies</a>
 </div>

@@ -96,7 +96,7 @@
                         </select>
                     </div>
                     <div class="col">
-                        <input type="submit" value="Results" class="btn btn-dark">
+                        <input type="submit" value="Results" class="btn btn-light">
                     </div>
                 </div>
                 {{#if errorMessage}}
@@ -119,12 +119,12 @@
             {{/each}}
             <div class="row justify-content-center">
                 <div class="col-2">{{#if locations.previousPage}}
-                    <a href="/locations/{{locations.previousPage}}" class="btn btn-dark mb-3">Previous page</a>
+                    <a href="/locations/{{locations.previousPage}}" class="btn btn-ligh mb-3">Previous page</a>
                     {{/if}}
                 </div>
                 <div class="col-2">
                     {{#if locations.nextPage}}
-                    <a href="/locations/{{locations.nextPage}}" class="btn btn-dark mb-3">Next page</a>
+                    <a href="/locations/{{locations.nextPage}}" class="btn btn-light mb-3">Next page</a>
                     {{/if}}
                 </div>
             </div>

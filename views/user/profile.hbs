@@ -16,19 +16,19 @@
                                 <P>{{user.role}}</P>
                                 {{#if isADMIN}}
                                 <div class="row">
-                                    <div class="col-xxl-4 mt-1">
+                                    <div class="col mt-1">
                                         <form action="/profile/{{user.id}}/USER" method="POST">
                                             <input type="submit" value="Change role to User"
                                                 class="btn btn-dark btn-sm">
                                         </form>
                                     </div>
-                                    <div class="col-xxl-4 mt-1">
+                                    <div class="col mt-1">
                                         <form action="/profile/{{user.id}}/EDITOR" method="POST">
                                             <input type="submit" value="Change role to Editor"
                                                 class="btn btn-dark btn-sm">
                                         </form>
                                     </div>
-                                    <div class="col-xxl-4 mt-1">
+                                    <div class="col mt-1">
                                         <form action="/profile/{{user.id}}/ADMIN" method="POST">
                                             <input type="submit" value="Change role to Admin"
                                                 class="btn btn-dark btn-sm">

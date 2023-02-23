@@ -5,11 +5,11 @@
                 <div class="card-body">
                     <input type="hidden" name="id" id="id" value="{{events.id}}">
                     <img src="{{events.image}}" class="img-fluid rounded-start" alt="{{events.title}}">
-                    <h5 class="card-title">Title:{{events.title}}</h5>
-                    <p class="card-text">Dimension:{{events.dimension}}</p>
-                    <p class="card-text">Organizer:{{events.organizer.username}}</p>
-                    <p class="card-text">Date:{{events.date}}</p>
-                    <p class="card-text">Description:{{events.description}}</p>
+                    <h5 class="card-title mt-2">Title: {{events.title}}</h5>
+                    <p class="card-text">Dimension: {{events.dimension}}</p>
+                    <p class="card-text">Organizer: {{events.organizer.username}}</p>
+                    <p class="card-text">Date: {{events.date}}</p>
+                    <p class="card-text">Description: {{events.description}}</p>
                     <p>Participants:</p>
                     <ul>
                         <div class="row">
@@ -26,18 +26,18 @@
                         </div>
                     </ul>
                     {{#if isEditOrOwnerOrAdmin}}
-                    <div class="row mt-4">
+                    <div class="row mt-4 justify-content-center mb-4">
                         <div class="col-md-3">
                             <a href="/events/{{events.id}}/edit" class="btn btn-warning btn-sm">Edit event</a>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <form action="/events/{{events.id}}/delete" method="POST">
                                 <input type="submit" value="Delete event" class="btn btn-danger btn-sm">
                             </form>
                         </div>
                         {{/if}}
                     </div>
-                    <div class="row mt-4">
+                    <div class="row justify-content-center">
                         <div class="col-md-3">
                             <form action="/events/{{events.id}}/add-event" method="POST">
                                 <input type="submit" value="Participate" class="btn btn-dark btn-sm">

@@ -28,6 +28,7 @@ body {
 .participants img {
   height: 40px;
   width: auto;
+  border-radius: 50%;
 }
 
 .li-participants {

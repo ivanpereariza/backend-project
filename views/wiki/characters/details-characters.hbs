@@ -3,32 +3,33 @@
         <div class="col-6">
             <div class="card mb-3">
                 <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="{{character.image}}" class="img-fluid rounded-start avatar" alt="{{character.name}}">
+                    <div class="col-lg-4">
+                        <img src="{{character.image}}" class="img-fluid avatar" alt="{{character.name}}">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-lg-8">
                         <div class="card-body">
                             <h5 class="card-title">Name: {{character.name}}</h5>
                             <p class="card-title">Status: {{character.status}}</p>
                             <p class="card-text">Species: {{character.species}}</p>
                             <p class="card-text">Gender: {{character.gender}}</p>
                             <p class="card-text">Origin: {{character.origin.name}}<a
-                                    href="/locations/details/{{character.origin.url}}" class="btn btn-dark">Go to the
-                                    origin</a></p>
+                                    href="/locations/details/{{character.origin.url}}"
+                                    class="btn btn-outline-secondary btn-sm m-1">Go to the origin</a></p>
                             <p class="card-text">Location: {{character.location.name}} <a
-                                    href="/locations/details/{{character.location.url}}" class="btn btn-dark">Go to the
-                                    location</a></p>
-
+                                    href="/locations/details/{{character.location.url}}"
+                                    class="btn btn-outline-secondary m-1 btn-sm">Go to the location </a></p>
                             {{#if currentUser}}
                             <div class="row mt-4">
-                                <div class="col-md-3">
+                                <div class="col-xl-3 m-1">
                                     <form action="/characters/{{character.id}}/add-favorites" method="POST">
-                                        <input type="submit" value="Add favorite" class="btn btn-dark btn-sm">
+                                        <input type="submit" value="Add favorite"
+                                            class="btn btn-outline-success btn-sm">
                                     </form>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-xl-3 m-1">
                                     <form action="/characters/{{character.id}}/quit-favorites" method="POST">
-                                        <input type="submit" value="Quit favorites" class="btn btn-dark btn-sm">
+                                        <input type="submit" value="Quit favorites"
+                                            class="btn btn-outline-danger btn-sm">
                                     </form>
                                 </div>
                             </div>
@@ -39,13 +40,27 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        {{#each character.episode}}
-        <div class="col-2">
-            <a href="/episodies/details/{{this}}" class="btn btn-dark">See episodie {{this}}</a>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Episodes where {{character.name}} appears
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="row justify-content-center">
+                        {{#each character.episode}}
+                        <div class="col-xl-2 col-md-3 col-sm-4 col-12 m-2">
+                            <a href="/episodies/details/{{this}}" class="btn btn-secondary">See episodie {{this}}</a>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
         </div>
-        {{/each}}
     </div>
-
-    <a href="/characters/1" class="btn btn-dark">Back to all characters</a>
+    <a href="/characters/1" class="btn btn-dark mt-3">Back to all characters</a>
 </div>

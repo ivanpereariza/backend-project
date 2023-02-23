@@ -1,6 +1,6 @@
 const { nextPage, prevPage } = require('./pages')
 
-function blockPages(data, page) {
+function getViewData(data, page) {
     return {
         info: data.results,
         nextPage: nextPage(data, page),
@@ -9,4 +9,4 @@ function blockPages(data, page) {
 }
 
 
-module.exports = { blockPages }
+module.exports = { getViewData }

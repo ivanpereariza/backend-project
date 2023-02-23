@@ -45,11 +45,75 @@ body {
   height: 50px;
 }
 
+.locations-img {
+  background-image: url('/images/2.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.video-container {
+  height: 94vh;
+  width: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: opacity(75%);
+}
+
+.caption {
+  position: absolute;
+  max-width: max-content;
+  margin-inline: auto;
+}
+
+.hero {
+  background-size: contain;
+  height: 94vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: black;
+  justify-content: center;
+  align-items: center;
+}
+
 .index-img {
-  height: 100vh;
+  height: 500px;
   background-image: url('/images/index.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  backdrop-filter: blur(10px)
+}
 
+.welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome h1 {
+  font-size: 4em;
+  font-weight: 900;
+  color: greenyellow;
+}
+
+.features-img {
+  height: 225px;
+  width: 80%;
+  margin-inline: auto;
+  transition: 0.5s;
+
+}
+
+footer {
+  background-color: black;
+  color: white;
 }

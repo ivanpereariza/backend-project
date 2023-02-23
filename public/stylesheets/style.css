@@ -117,3 +117,43 @@ footer {
   background-color: black;
   color: white;
 }
+
+.locations-img {
+  min-height: 100vh;
+  background-image: url('/images/locations-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.characters-img {
+  min-height: 100vh;
+  background-image: url('/images/characters-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+.episodies-img {
+  min-height: 100vh;
+  background-image: url('/images/episodies-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.events-img {
+  min-height: 100vh;
+  background-image: url('/images/events-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.white-letters {
+  color: white;
+}
+
+.profile-img {
+  min-height: 100vh;
+  background-image: url('/images/profile-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}

@@ -1,124 +1,134 @@
-<div class="row justify-content-center mt-3">
-    <div class="col-6">
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="{{user.avatarUrl}}" class="img-fluid rounded-start avatar" alt="{{user.username}}">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{user.username}}</h5>
-                        <p class="card-title">{{user.dimension}}</p>
-                        <p class="card-text">{{user.description}}</p>
-                        <P>{{user.role}}</P>
-                        {{#if isADMIN}}
-                        <div class="row">
-                            <div class="col-xxl-4 mt-1">
-                                <form action="/profile/{{user.id}}/USER" method="POST">
-                                    <input type="submit" value="Change role to User" class="btn btn-dark btn-sm">
-                                </form>
-                            </div>
-                            <div class="col-xxl-4 mt-1">
-                                <form action="/profile/{{user.id}}/EDITOR" method="POST">
-                                    <input type="submit" value="Change role to Editor" class="btn btn-dark btn-sm">
-                                </form>
-                            </div>
-                            <div class="col-xxl-4 mt-1">
-                                <form action="/profile/{{user.id}}/ADMIN" method="POST">
-                                    <input type="submit" value="Change role to Admin" class="btn btn-dark btn-sm">
-                                </form>
+<div class="profile-img">
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-6">
+                <div class="card mb-3 my-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{user.avatarUrl}}" class="img-fluid rounded-start avatar"
+                                alt="{{user.username}}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{user.username}}</h5>
+                                <p class="card-title">{{user.dimension}}</p>
+                                <p class="card-text">{{user.description}}</p>
+                                <P>{{user.role}}</P>
+                                {{#if isADMIN}}
+                                <div class="row">
+                                    <div class="col-xxl-4 mt-1">
+                                        <form action="/profile/{{user.id}}/USER" method="POST">
+                                            <input type="submit" value="Change role to User"
+                                                class="btn btn-dark btn-sm">
+                                        </form>
+                                    </div>
+                                    <div class="col-xxl-4 mt-1">
+                                        <form action="/profile/{{user.id}}/EDITOR" method="POST">
+                                            <input type="submit" value="Change role to Editor"
+                                                class="btn btn-dark btn-sm">
+                                        </form>
+                                    </div>
+                                    <div class="col-xxl-4 mt-1">
+                                        <form action="/profile/{{user.id}}/ADMIN" method="POST">
+                                            <input type="submit" value="Change role to Admin"
+                                                class="btn btn-dark btn-sm">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-xxl-3 mt-1">
+                                        <a href="/profile/{{user._id}}/edit" class="btn btn-warning btn-sm">Edit
+                                            profile</a>
+                                    </div>
+                                    <div class="col-xxl-3 mt-1">
+                                        <form action="/profile/{{user.id}}/delete" method="POST">
+                                            <input type="submit" value="Delete User" class="btn btn-danger btn-sm">
+                                        </form>
+                                    </div>
+                                </div>
+                                {{/if}}
+                                {{#if isUserNoADMIN}}
+                                <div class="row mt-3">
+                                    <div class="col-md-3">
+                                        <a href="/profile/{{user._id}}/edit" class="btn btn-warning btn-sm">Edit
+                                            profile</a>
+                                    </div>
+                                </div>
+                                {{/if}}
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-xxl-3 mt-1">
-                                <a href="/profile/{{user._id}}/edit" class="btn btn-warning btn-sm">Edit profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#unless favCharacters.[0].info}}
+        <div class="container">
+            <h5 class="white-letters">Favourite Characters</h5>
+            <div class="row justify-content-center">
+                {{#each favCharacters}}
+                <div class="col-xl-3 col-lg-4 col-md-5 my-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{image}}" class="card-img-top img-fluid mx-auto d-block avatar p-3" alt="{{name}}">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Name: {{name}}</h5>
+                            <p class="card-text text-center">Status: {{status}}</p>
+                            <p class="card-text text-center">Species: {{species}}</p>
+                            <p class="card-text text-center">Gender: {{gender}}</p>
+                            <div class="row px-5">
+                                <a href="/characters/details/{{id}}" class="btn btn-dark">DETAILS</a>
                             </div>
-                            <div class="col-xxl-3 mt-1">
-                                <form action="/profile/{{user.id}}/delete" method="POST">
-                                    <input type="submit" value="Delete User" class="btn btn-danger btn-sm">
-                                </form>
-                            </div>
+
                         </div>
-                        {{/if}}
-                        {{#if isUserNoADMIN}}
-                        <div class="row mt-3">
-                            <div class="col-md-3">
-                                <a href="/profile/{{user._id}}/edit" class="btn btn-warning btn-sm">Edit profile</a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/unless}}
+
+        {{#unless favLocations.[0].info}}
+        <div class="container">
+            <h5 class="white-letters">Favourite Locations</h5>
+            <div class="row justify-content-center">
+                {{#each favLocations}}
+                <div class="col-xl-3 col-lg-4 col-md-5 my-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Name: {{name}}</h5>
+                            <p class="card-text text-center">Type: {{type}}</p>
+                            <p class="card-text text-center">Dimension: {{dimension}}</p>
+                            <div class="row px-5">
+                                <a href="/locations/details/{{id}}" class="btn btn-dark">DETAILS</a>
                             </div>
+
                         </div>
-                        {{/if}}
                     </div>
                 </div>
+                {{/each}}
             </div>
         </div>
-    </div>
-</div>
-{{#unless favCharacters.[0].info}}
-<div class="container">
-    <h5>Favourite Characters</h5>
-    <div class="row justify-content-center">
-        {{#each favCharacters}}
-        <div class="col-xl-3 col-lg-4 col-md-5 my-3">
-            <div class="card" style="width: 18rem;">
-                <img src="{{image}}" class="card-img-top img-fluid mx-auto d-block avatar p-3" alt="{{name}}">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Name: {{name}}</h5>
-                    <p class="card-text text-center">Status: {{status}}</p>
-                    <p class="card-text text-center">Species: {{species}}</p>
-                    <p class="card-text text-center">Gender: {{gender}}</p>
-                    <div class="row px-5">
-                        <a href="/characters/details/{{id}}" class="btn btn-dark">DETAILS</a>
+        {{/unless}}
+
+        {{#unless favEpisodies.[0].info}}
+        <div class="container">
+            <h5 class="white-letters">Favourite Episodies</h5>
+            <div class="row justify-content-center">
+                {{#each favEpisodies}}
+                <div class="col-xl-3 col-lg-4 col-md-5 my-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Name: {{name}}</h5>
+                            <p class="card-text text-center">{{episode}}</p>
+                            <div class="row px-5">
+                                <a href="/episodies/details/{{id}}" class="btn btn-dark">DETAILS</a>
+                            </div>
+
+                        </div>
                     </div>
-
                 </div>
+                {{/each}}
             </div>
         </div>
-        {{/each}}
+        {{/unless}}
     </div>
 </div>
-{{/unless}}
-
-{{#unless favLocations.[0].info}}
-<div class="container">
-    <h5>Favourite Locations</h5>
-    <div class="row justify-content-center">
-        {{#each favLocations}}
-        <div class="col-xl-3 col-lg-4 col-md-5 my-3">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Name: {{name}}</h5>
-                    <p class="card-text text-center">Type: {{type}}</p>
-                    <p class="card-text text-center">Dimension: {{dimension}}</p>
-                    <div class="row px-5">
-                        <a href="/locations/details/{{id}}" class="btn btn-dark">DETAILS</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-</div>
-{{/unless}}
-
-{{#unless favEpisodies.[0].info}}
-<div class="container">
-    <h5>Favourite Episodies</h5>
-    <div class="row justify-content-center">
-        {{#each favEpisodies}}
-        <div class="col-xl-3 col-lg-4 col-md-5 my-3">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Name: {{name}}</h5>
-                    <p class="card-text text-center">{{episode}}</p>
-                    <div class="row px-5">
-                        <a href="/episodies/details/{{id}}" class="btn btn-dark">DETAILS</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-</div>
-{{/unless}}

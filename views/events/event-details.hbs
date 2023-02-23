@@ -1,54 +1,56 @@
-<div class="row justify-content-center mt-3">
-    <div class="col-6">
-        <div class="card mb-3">
-            <div class="card-body">
-                <input type="hidden" name="id" id="id" value="{{events.id}}">
-                <img src="{{events.image}}" class="img-fluid rounded-start" alt="{{events.title}}">
-                <h5 class="card-title">Title:{{events.title}}</h5>
-                <p class="card-text">Dimension:{{events.dimension}}</p>
-                <p class="card-text">Organizer:{{events.organizer.username}}</p>
-                <p class="card-text">Date:{{events.date}}</p>
-                <p class="card-text">Description:{{events.description}}</p>
-                <p>Participants:</p>
-                <ul>
-                    <div class="row">
-                        {{#each events.participants}}
-                        <div class="col-2">
-                            <li class="li-participants">
-                                <div class="participants">
-                                    <img src="{{avatarUrl}}" alt="">
-                                    <p>{{username}}</p>
-                                </div>
-                            </li>
+<div class="events-img">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="card my-3">
+                <div class="card-body">
+                    <input type="hidden" name="id" id="id" value="{{events.id}}">
+                    <img src="{{events.image}}" class="img-fluid rounded-start" alt="{{events.title}}">
+                    <h5 class="card-title">Title:{{events.title}}</h5>
+                    <p class="card-text">Dimension:{{events.dimension}}</p>
+                    <p class="card-text">Organizer:{{events.organizer.username}}</p>
+                    <p class="card-text">Date:{{events.date}}</p>
+                    <p class="card-text">Description:{{events.description}}</p>
+                    <p>Participants:</p>
+                    <ul>
+                        <div class="row">
+                            {{#each events.participants}}
+                            <div class="col-2">
+                                <li class="li-participants">
+                                    <div class="participants">
+                                        <img src="{{avatarUrl}}" alt="">
+                                        <p>{{username}}</p>
+                                    </div>
+                                </li>
+                            </div>
+                            {{/each}}
                         </div>
-                        {{/each}}
+                    </ul>
+                    {{#if isEditOrOwnerOrAdmin}}
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <a href="/events/{{events.id}}/edit" class="btn btn-warning btn-sm">Edit event</a>
+                        </div>
+                        <div class="col-md-4">
+                            <form action="/events/{{events.id}}/delete" method="POST">
+                                <input type="submit" value="Delete event" class="btn btn-danger btn-sm">
+                            </form>
+                        </div>
+                        {{/if}}
                     </div>
-                </ul>
-                {{#if isEditOrOwnerOrAdmin}}
-                <div class="row mt-4">
-                    <div class="col-md-3">
-                        <a href="/events/{{events.id}}/edit" class="btn btn-warning btn-sm">Edit event</a>
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <form action="/events/{{events.id}}/add-event" method="POST">
+                                <input type="submit" value="Participate" class="btn btn-dark btn-sm">
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+                            <form action="/events/{{events.id}}/leave-event" method="POST">
+                                <input type="submit" value="Leave the event" class="btn btn-dark btn-sm">
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <form action="/events/{{events.id}}/delete" method="POST">
-                            <input type="submit" value="Delete event" class="btn btn-danger btn-sm">
-                        </form>
-                    </div>
-                    {{/if}}
+                    <div id="map" class="mt-3"></div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-md-3">
-                        <form action="/events/{{events.id}}/add-event" method="POST">
-                            <input type="submit" value="Participate" class="btn btn-dark btn-sm">
-                        </form>
-                    </div>
-                    <div class="col-md-3">
-                        <form action="/events/{{events.id}}/leave-event" method="POST">
-                            <input type="submit" value="Leave the event" class="btn btn-dark btn-sm">
-                        </form>
-                    </div>
-                </div>
-                <div id="map" class="mt-3"></div>
             </div>
         </div>
     </div>

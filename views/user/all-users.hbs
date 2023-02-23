@@ -1,18 +1,21 @@
-<div class="container">
-    <div class="row justify-content-center">
-        {{#each users}}
-        <div class="col-xl-3 col-lg-4 col-md-5 my-3">
-            <div class="card" style="width: 18rem;">
-                <img src="{{avatarUrl}}" class="card-img-top img-fluid mx-auto d-block avatar p-3" alt="{{username}}">
-                <div class="card-body">
-                    <h5 class="card-title text-center">{{username}}</h5>
-                    <p class="card-text text-center">{{dimension}}</p>
-                    <div class="row px-5">
-                        <a href="/profile/{{id}}" class="btn btn-dark">DETAILS</a>
+<div class="profile-img">
+    <div class="container">
+        <div class="row justify-content-center">
+            {{#each users}}
+            <div class="col-xl-3 col-lg-4 col-md-5 my-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{avatarUrl}}" class="card-img-top img-fluid mx-auto d-block avatar p-3"
+                        alt="{{username}}">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{username}}</h5>
+                        <p class="card-text text-center">{{dimension}}</p>
+                        <div class="row px-5">
+                            <a href="/profile/{{id}}" class="btn btn-dark">DETAILS</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
-        {{/each}}
     </div>
 </div>

@@ -1,55 +1,57 @@
-<div class="container">
+<div class="profile-img white-letters">
+    <div class="container">
 
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
 
-        <div class="col-md-6">
+            <div class="col-md-6 my-3">
 
-            <h1>Edit profile</h1>
-            <hr>
+                <h1>Edit profile</h1>
+                <hr>
 
-            <form action="/profile/{{id}}/edit" method="POST" enctype="multipart/form-data">
+                <form action="/profile/{{id}}/edit" method="POST" enctype="multipart/form-data">
 
-                <div class="mb-3 row">
-                    <div class="col">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{email}}">
+                    <div class="mb-3 row">
+                        <div class="col">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{email}}">
+
+                        </div>
 
                     </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" value="{{username}}">
 
-                </div>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" value="{{username}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="avatarUrl" class="form-label">Avatar</label>
+                        <input class="form-control" type="file" id="avatarUrl" name="avatarUrl" value="{{avatarUrl}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" rows="3"
+                            name="description">{{description}}</textarea>
+                    </div>
 
-                </div>
-                <div class="mb-3">
-                    <label for="avatarUrl" class="form-label">Avatar</label>
-                    <input class="form-control" type="file" id="avatarUrl" name="avatarUrl" value="{{avatarUrl}}">
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" rows="3"
-                        name="description">{{description}}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="dimension" class="form-label">Dimension</label>
-                    <select class="form-select" name="dimension" id="dimension">
-                        <option value="Dimension C-137" selected>Dimension C-137</option>
-                        <option value="Post-Apocalyptic Dimension">Post-Apocalyptic Dimension</option>
-                        <option value="Replacement Dimension">Replacement Dimension</option>
-                        <option value="Cronenberg Dimension">Cronenberg Dimension</option>
-                        <option value="Testicle Monster Dimension">Testicle Monster Dimension</option>
-                    </select>
-                </div>
-                <input type="hidden" name="id" value="{{id}}">
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark block">Save Edit</button>
-                </div>
+                    <div class="mb-3">
+                        <label for="dimension" class="form-label">Dimension</label>
+                        <select class="form-select" name="dimension" id="dimension">
+                            <option value="Dimension C-137" selected>Dimension C-137</option>
+                            <option value="Post-Apocalyptic Dimension">Post-Apocalyptic Dimension</option>
+                            <option value="Replacement Dimension">Replacement Dimension</option>
+                            <option value="Cronenberg Dimension">Cronenberg Dimension</option>
+                            <option value="Testicle Monster Dimension">Testicle Monster Dimension</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="id" value="{{id}}">
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-light block">Save Edit</button>
+                    </div>
 
 
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
 
+    </div>
 </div>

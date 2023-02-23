@@ -2,6 +2,8 @@ Index routes:
 |         Route         | HTTP Verb |     Description      |
 |-----------------------|-----------|----------------------|
 |`/`                    |GET        |Home page             |
+|`/community`           |GET        |View community        |
+
 
 Auth routes:
 
@@ -28,6 +30,7 @@ Character routes:
 |                Route           | HTTP Verb |     Description       |
 |--------------------------------|-----------|-----------------------|
 |`/characters/:page`             |GET        |List all characters    |
+|`/characters/results/:page`     |GET        |Character search result|
 |`/characters/details/:id`       |GET        |Details character by ID|
 |`/characters/:id/add-favorites` |POST       |Add character to fav   |
 |`/characters/:id/quit-favorites`|POST       |Quit characters to fav |
@@ -38,6 +41,7 @@ Locations routes:
 |              Route            | HTTP Verb |     Description       |
 |-------------------------------|-----------|-----------------------|
 |`/locations/:page`             |GET        |List all locations     |
+|`/results/:page`               |GET        |Location search results|
 |`/locations/details/:id`       |GET        |Details location by ID |
 |`/locations/:id/add-favorites` |POST       |Add location to fav    |
 |`/locations/:id/quit-favorites`|POST       |Quit location to fav   |
@@ -48,6 +52,7 @@ Episodies routes:
 |              Route            | HTTP Verb |     Description       |
 |-------------------------------|-----------|-----------------------|
 |`/episodies/:page`             |GET        |List all episodies     |
+|`/episodies/results/:page`     |GET        |Eposodies search result|
 |`/episodies/details/:id`       |GET        |Details episodie by ID |
 |`/episodies/:id/add-favorites` |POST       |Add episodie to fav    |
 |`/episodies/:id/quit-favorites`|POST       |Quit episodie to fav   |
@@ -69,8 +74,9 @@ Events routes:
 
 API routes:
 
-|     Route   | HTTP Verb |    Description    | JSON |
-|-------------|-----------|-------------------|------|
-|`/api/events`|GET        |API with all events|  [x] |
-|`/api/users` |GET        |API with all users |  [x] |
+|     Route   | HTTP Verb |    Description      | JSON |
+|-------------|-----------|---------------------|------|
+|`/api/users` |GET        |API with all users   |  [x] |
+|`/api/events`|GET        |API with all events  |  [x] |
+|`/events/:id`|GET        |API with event by id |  [x] |
 

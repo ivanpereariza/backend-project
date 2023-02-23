@@ -4,7 +4,7 @@ const router = express.Router()
 const User = require('../models/User.model')
 const ApiService = require('./../services/api.service')
 const locationsApi = new ApiService
-const { blockPages } = require('./../utils/blockPages')
+const { getViewData } = require('./../utils/getViewData')
 
 
 router.post('/:id/add-favorites', (req, res, next) => {
@@ -43,7 +43,7 @@ router.get('/results/:page', (req, res, next) => {
         .getLocationsFilter(page, name, type, dimension)
         .then(({ data }) => {
             res.render('wiki/locations/results-locations', {
-                locations: blockPages(data, page),
+                locations: getViewData(data, page),
                 name, type, dimension
             })
         })
@@ -61,7 +61,7 @@ router.get('/:page', (req, res, next) => {
     locationsApi
         .getAllLocations(page)
         .then(({ data }) => res.render('wiki/locations/list-locations', {
-            locations: blockPages(data, page),
+            locations: getViewData(data, page),
             errorMessage
         }))
         .catch(err => next(err))

@@ -3,7 +3,7 @@ const router = express.Router()
 const User = require('../models/User.model')
 const ApiService = require('./../services/api.service')
 const { takeIdsArray, takeIdOneItem } = require('../utils/takeIdsUrl')
-const { blockPages } = require('./../utils/blockPages')
+const { getViewData } = require('../utils/getViewData')
 const charactersApi = new ApiService()
 
 router.post('/:id/add-favorites', (req, res, next) => {
@@ -41,11 +41,10 @@ router.get('/results/:page', (req, res, next) => {
     charactersApi
         .getCharactersFilter(page, name, species, status, gender)
         .then(({ data }) => res.render('wiki/characters/results-characters', {
-            characters: blockPages(data, page),
+            characters: getViewData(data, page),
             name, species, status, gender
         }))
         .catch(err => {
-            console.log(err)
             res.redirect('/characters/1?errorMessage=Dont find anything')
         })
 })
@@ -58,7 +57,7 @@ router.get('/:page', (req, res, next) => {
     charactersApi
         .getAllCharacters(page)
         .then(({ data }) => res.render('wiki/characters/list-characters', {
-            characters: blockPages(data, page),
+            characters: getViewData(data, page),
             errorMessage
         }))
         .catch(err => next(err))

@@ -4,7 +4,7 @@ const { takeIdsArray } = require('../utils/takeIdsUrl')
 const User = require('../models/User.model')
 const ApiService = require('./../services/api.service')
 const episodiesApi = new ApiService
-const { blockPages } = require('./../utils/blockPages')
+const { getViewData } = require('./../utils/getViewData')
 
 router.post('/:id/add-favorites', (req, res, next) => {
 
@@ -38,7 +38,7 @@ router.get('/results/:page', (req, res, next) => {
     episodiesApi
         .getEpisodiesFilter(page, season)
         .then(({ data }) => res.render('wiki/episodies/results-episodies', {
-            episodies: blockPages(data, page),
+            episodies: getViewData(data, page),
             season
         }))
         .catch(err => {
@@ -55,7 +55,7 @@ router.get('/:page', (req, res, next) => {
     episodiesApi
         .getAllEpisodies(page)
         .then(({ data }) => res.render('wiki/episodies/list-episodies', {
-            episodies: blockPages(data, page),
+            episodies: getViewData(data, page),
             errorMessage
         }))
         .catch(err => next(err))

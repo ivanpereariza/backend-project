@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/User.model')
 const ApiService = require('./../services/api.service')
-const { nextPage, prevPage } = require('./../utils/pages')
 const { takeIdsArray, takeIdOneItem } = require('../utils/takeIdsUrl')
+const { blockPages } = require('./../utils/blockPages')
 const charactersApi = new ApiService()
 
 router.post('/:id/add-favorites', (req, res, next) => {
@@ -41,9 +41,7 @@ router.get('/results/:page', (req, res, next) => {
     charactersApi
         .getCharactersFilter(page, name, species, status, gender)
         .then(({ data }) => res.render('wiki/characters/results-characters', {
-            characters: data.results,
-            nextPage: nextPage(data, page),
-            previousPage: prevPage(data, page),
+            characters: blockPages(data, page),
             name, species, status, gender
         }))
         .catch(err => {
@@ -60,9 +58,7 @@ router.get('/:page', (req, res, next) => {
     charactersApi
         .getAllCharacters(page)
         .then(({ data }) => res.render('wiki/characters/list-characters', {
-            characters: data.results,
-            nextPage: nextPage(data, page),
-            previousPage: prevPage(data, page),
+            characters: blockPages(data, page),
             errorMessage
         }))
         .catch(err => next(err))

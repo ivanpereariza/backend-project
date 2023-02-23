@@ -17,7 +17,7 @@
                 </div>
             </div>
         </form>
-        {{#each episodies}}
+        {{#each episodies.info}}
         <div class="col-xl-3 col-lg-4 col-md-5 my-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -31,14 +31,16 @@
         </div>
         {{/each}}
         <div class="row justify-content-center">
-            <div class="col-2">{{#if previousPage}}
-                <a href="/episodies/results/{{previousPage}}?season={{season}}" class="btn btn-dark mb-3">Previous
+            <div class="col-2">{{#if episodies.previousPage}}
+                <a href="/episodies/results/{{episodies.previousPage}}?season={{season}}"
+                    class="btn btn-dark mb-3">Previous
                     page</a>
                 {{/if}}
             </div>
             <div class="col-2">
-                {{#if nextPage}}
-                <a href="/episodies/results/{{nextPage}}?season={{season}}" class="btn btn-dark mb-3">Next page</a>
+                {{#if episodies.nextPage}}
+                <a href="/episodies/results/{{episodies.nextPage}}?season={{season}}" class="btn btn-dark mb-3">Next
+                    page</a>
                 {{/if}}
             </div>
         </div>

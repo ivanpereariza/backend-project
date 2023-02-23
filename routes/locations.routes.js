@@ -2,11 +2,10 @@ const express = require('express')
 const { takeIdsArray } = require('../utils/takeIdsUrl')
 const router = express.Router()
 const User = require('../models/User.model')
-
 const ApiService = require('./../services/api.service')
-const { nextPage, prevPage } = require('./../utils/pages')
-
 const locationsApi = new ApiService
+const { blockPages } = require('./../utils/blockPages')
+
 
 router.post('/:id/add-favorites', (req, res, next) => {
 
@@ -43,11 +42,8 @@ router.get('/results/:page', (req, res, next) => {
     locationsApi
         .getLocationsFilter(page, name, type, dimension)
         .then(({ data }) => {
-            console.log(data)
             res.render('wiki/locations/results-locations', {
-                locations: data.results,
-                nextPage: nextPage(data, page),
-                previousPage: prevPage(data, page),
+                locations: blockPages(data, page),
                 name, type, dimension
             })
         })
@@ -61,12 +57,11 @@ router.get('/:page', (req, res, next) => {
 
     const { page } = req.params
     const { errorMessage } = req.query
+
     locationsApi
         .getAllLocations(page)
         .then(({ data }) => res.render('wiki/locations/list-locations', {
-            locations: data.results,
-            nextPage: nextPage(data, page),
-            previousPage: prevPage(data, page),
+            locations: blockPages(data, page),
             errorMessage
         }))
         .catch(err => next(err))
@@ -83,11 +78,7 @@ router.get('/details/:id', (req, res, next) => {
             locationsApi
                 .getCharacterById(data.residents)
                 .then(character => {
-
                     let char = character.data.length ? character.data : [character.data]
-
-
-
                     res.render('wiki/locations/details-locations', { location: data, char })
                 })
                 .catch(err => next(err))

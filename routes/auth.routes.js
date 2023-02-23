@@ -50,7 +50,7 @@ router.get('/login', isLoggedOut, (req, res, next) => {
     res.render('auth/login')
 })
 
-router.post('/login', (req, res, next) => {
+router.post('/login', isLoggedOut, (req, res, next) => {
 
     const { username, password } = req.body
 

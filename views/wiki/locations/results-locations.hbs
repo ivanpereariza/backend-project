@@ -98,8 +98,7 @@
                 </div>
             </div>
         </form>
-        {{#if locations}}
-        {{#each locations}}
+        {{#each locations.info}}
         <div class="col-xl-3 col-lg-4 col-md-5 my-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -114,23 +113,17 @@
         </div>
         {{/each}}
         <div class="row justify-content-center">
-            <div class="col-2">{{#if previousPage}}
-                <a href="/locations/results/{{previousPage}}?name={{name}}&type={{type}}&dimension={{dimension}}"
+            <div class="col-2">{{#if locations.previousPage}}
+                <a href="/locations/results/{{locations.previousPage}}?name={{name}}&type={{type}}&dimension={{dimension}}"
                     class="btn btn-dark mb-3">Previous page</a>
                 {{/if}}
             </div>
             <div class="col-2">
-                {{#if nextPage}}
-                <a href="/locations/results/{{nextPage}}?name={{name}}&type={{type}}&dimension={{dimension}}"
+                {{#if locations.nextPage}}
+                <a href="/locations/results/{{locations.nextPage}}?name={{name}}&type={{type}}&dimension={{dimension}}"
                     class="btn btn-dark mb-3">Next page</a>
                 {{/if}}
             </div>
         </div>
-        {{/if}}
-        {{#unless locations}}
-        <div>
-            <p>Location not found</p>
-        </div>
-        {{/unless}}
     </div>
 </div>

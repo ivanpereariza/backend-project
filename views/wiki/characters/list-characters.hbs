@@ -3,11 +3,11 @@
         <div class="row justify-content-center">
             <form action="/characters/results/1" method="GET">
                 <div class="my-3 row">
-                    <div class="col">
+                    <div class="col-md-3 mt-1">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name"
                             value="{{name}}">
                     </div>
-                    <div class="col">
+                    <div class="col-md-3 mt-1">
                         <select class="form-select" name="status" id="status">
                             <option value="" selected>Select the status</option>
                             <option value="Alive">Alive</option>
@@ -15,7 +15,7 @@
                             <option value="unknown">Unknown</option>
                         </select>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3 mt-1">
                         <select class="form-select" name="gender" id="gender">
                             <option value="" selected>Select the gender</option>
                             <option value="Male">Male</option>
@@ -24,7 +24,7 @@
                             <option value="unknown">Unknown</option>
                         </select>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3 mt-1">
                         <select class="form-select" name="species" id="species">
                             <option value="" selected>Select the species</option>
                             <option value="Human">Human</option>
@@ -39,7 +39,7 @@
                             <option value="unknown">Unknown</option>
                         </select>
                     </div>
-                    <div class="col">
+                    <div class="col-md-3 mt-1">
                         <input type="submit" value="Results" class="btn btn-light">
                     </div>
                 </div>
@@ -64,11 +64,11 @@
             </div>
             {{/each}}
             <div class="row justify-content-center">
-                <div class="col-2">{{#if characters.previousPage}}
+                <div class="col-md-2">{{#if characters.previousPage}}
                     <a href="/characters/{{characters.previousPage}}" class="btn btn-light mb-3">Previous page</a>
                     {{/if}}
                 </div>
-                <div class="col-2">
+                <div class="col-md-2">
                     {{#if characters.nextPage}}
                     <a href="/characters/{{characters.nextPage}}" class="btn btn-light mb-3">Next page</a>
                     {{/if}}

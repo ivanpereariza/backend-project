@@ -1,5 +1,5 @@
 
-You can check our project deplyed here: https://rick-and-morty-project.fly.dev/
+You can check our project deployed here: https://rick-and-morty-project.fly.dev/
 
 # APIs
 - Cloudinary

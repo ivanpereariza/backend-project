@@ -1,11 +1,21 @@
-Index routes:
+
+You can check our project deplyed here: https://rick-and-morty-project.fly.dev/
+
+# APIs
+- Cloudinary
+- API Google
+- https://rickandmortyapi.com/api
+
+# ROUTES
+
+## Index routes:
 |         Route         | HTTP Verb |     Description      |
 |-----------------------|-----------|----------------------|
 |`/`                    |GET        |Home page             |
 |`/community`           |GET        |View community        |
 
 
-Auth routes:
+## Auth routes:
 
 |         Route         | HTTP Verb |     Description      |
 |-----------------------|-----------|----------------------|
@@ -15,7 +25,7 @@ Auth routes:
 |`/login`               |POST       |Login user            |     
 |`/logout`              |GET        |Logout user           |     
 
-Profile routes:
+## Profile routes:
 
 |         Route         | HTTP Verb |     Description      |
 |-----------------------|-----------|----------------------|
@@ -25,7 +35,7 @@ Profile routes:
 |`/profile/:id/delete`  |POST       |Delete profile        |
 |`/profile/:id/:role `  |POST       |Change role           |
 
-Character routes:
+## Character routes:
 
 |                Route           | HTTP Verb |     Description       |
 |--------------------------------|-----------|-----------------------|
@@ -36,18 +46,18 @@ Character routes:
 |`/characters/:id/quit-favorites`|POST       |Quit characters to fav |
 
 
-Locations routes:
+## Locations routes:
 
 |              Route            | HTTP Verb |     Description       |
 |-------------------------------|-----------|-----------------------|
 |`/locations/:page`             |GET        |List all locations     |
-|`/results/:page`               |GET        |Location search results|
+|`/locations/results/:page`     |GET        |Location search results|
 |`/locations/details/:id`       |GET        |Details location by ID |
 |`/locations/:id/add-favorites` |POST       |Add location to fav    |
 |`/locations/:id/quit-favorites`|POST       |Quit location to fav   |
 
 
-Episodies routes:
+## Episodies routes:
 
 |              Route            | HTTP Verb |     Description       |
 |-------------------------------|-----------|-----------------------|
@@ -58,25 +68,26 @@ Episodies routes:
 |`/episodies/:id/quit-favorites`|POST       |Quit episodie to fav   |
 
 
-Events routes:
+## Events routes:
 
-|          Route          | HTTP Verb |     Description       |
-|-------------------------|-----------|-----------------------|
-|`/events`                |GET        |List all events        |
-|`/events/create`         |GET        |Create event page      |
-|`/events/create`         |POST       |Create new event       |
-|`/events/:id`            |GET        |Details events by ID   |
-|`/events/:id/edit`       |GET        |Edit event page        |
-|`/events/:id/edit`       |POST       |Edit event             |
-|`/events/:id/delete`     |POST       |Delete event           |
-|`/events/:id/add-event`  |POST       |Participet in the event|
-|`/events/:id/leave-event`|POST       |Leave the event        |
+|          Route          | HTTP Verb |            Description         |
+|-------------------------|-----------|--------------------------------|
+|`/events`                |GET        |List all events                 |
+|`/events/create`         |GET        |Create event page               |
+|`/events/create`         |POST       |Create new event                |
+|`/events/:id`            |GET        |Details events by ID            |
+|`/events/:id/edit`       |GET        |Edit event page                 |
+|`/events/:id/edit`       |POST       |Edit event                      |
+|`/events/:id/delete`     |POST       |Delete event                    |
+|`/events/results`        |GET        |Get event filtered by dimension |
+|`/events/:id/add-event`  |POST       |Participet in the event         |
+|`/events/:id/leave-event`|POST       |Leave the event                 |
 
-API routes:
+## API routes:
 
-|     Route   | HTTP Verb |    Description      | JSON |
-|-------------|-----------|---------------------|------|
-|`/api/users` |GET        |API with all users   |  [x] |
-|`/api/events`|GET        |API with all events  |  [x] |
-|`/events/:id`|GET        |API with event by id |  [x] |
+|       Route     | HTTP Verb |    Description      | JSON |
+|-----------------|-----------|---------------------|------|
+|`/api/users`     |GET        |API with all users   |  ✅ |
+|`/api/events`    |GET        |API with all events  |  ✅ |
+|`/api/events/:id`|GET        |API with event by id |  ✅ |
 
